@@ -5,6 +5,7 @@ public class Avion {
 
     int columnaAsientos;
 
+
     public String getCodigoAvion() {
         return codigoAvion;
     }
