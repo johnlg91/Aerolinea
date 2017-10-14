@@ -2,6 +2,7 @@ public class Avion {
 
     String codigoAvion;
     int filaAsientos;
+
     int columnaAsientos;
 
     public String getCodigoAvion() {
