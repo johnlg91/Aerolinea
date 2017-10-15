@@ -21,7 +21,7 @@ public class Seat {
         return row;
     }
 
-    public int getColumn() {
+    public char getColumn() {
         return column;
     }
 
