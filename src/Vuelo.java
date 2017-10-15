@@ -1,19 +1,23 @@
+import java.util.Date;
+
 public class Vuelo {
 
-    double fechaSalida;
-    double fechaLlegada;
+    Date fechaSalida;
+    Date fechaLlegada;
     Plane plane;
     String codigoVuelo;
     String salida;
     String destino;
 
-    public Vuelo(){
-        fechaSalida=20171103;
-        fechaLlegada=20171104;
-       // plane=new Plane();
-        codigoVuelo="2";
-        salida="Austral";
-        destino="Itba";
+    public Vuelo(String code, String planeCode) {
+        plane = Planes.findPlane(planeCode)
+
+        fechaSalida = =new Date(2017, 11, 03);
+        fechaLlegada = new Date(2017, 11, 04;
+        // plane=new Plane();
+        codigoVuelo = "2";
+        salida = "Austral";
+        destino = "Itba";
     }
 
 
