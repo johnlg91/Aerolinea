@@ -1,12 +1,12 @@
 public class Seat {
-    private final int row;
     private final char column;
+    private final int row;
     private boolean reserved;
 
-    public Seat(int row, char column){
+    public Seat(char column, int row) {
         this.row = row;
         this.column = column;
-        reserved =false;
+        reserved = false;
     }
 
     public boolean isReserved() {
@@ -23,16 +23,6 @@ public class Seat {
 
     public char getColumn() {
         return column;
-    }
-
-    @Override
-    public int hashCode() {
-        return toString().hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return obj instanceof Seat && ((Seat) obj).row == row && ((Seat) obj).column == column;
     }
 
     @Override

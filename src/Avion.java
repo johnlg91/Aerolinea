@@ -1,16 +1,27 @@
 public class Avion {
 
     String codigoAvion;
-    int filaAsientos;
+    int column;
+    int row;
 
-    int columnaAsientos;
+    public Avion(int row, int column) {
+        this.row = row;
+        this.column = column;
+        codigoAvion = "1";
+    }
 
 
     public String getCodigoAvion() {
         return codigoAvion;
     }
 
-    public void asientos(){
-        Seat a1=new Seat(1);
+    //Que pasa si el numero de asientos exede 26?
+    public void asientos() {
+        for (int i = 0; i < column; i++) {
+            for (int j = 0; j < row; j++) {
+                String name = (char)i+j;
+                Seat name = new Seat((char) i, j);
+            }
+        }
     }
 }
