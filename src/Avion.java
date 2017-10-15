@@ -11,6 +11,6 @@ public class Avion {
     }
 
     public void asientos(){
-        Asiento a1=new Asiento(1);
+        Seat a1=new Seat(1);
     }
 }
