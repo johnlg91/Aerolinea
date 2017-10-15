@@ -3,7 +3,7 @@ public class Seat {
     private final int row;
     private boolean reserved;
 
-    public Seat(char column, int row) {
+    public Seat(int row, char column) {
         this.row = row;
         this.column = column;
         reserved = false;

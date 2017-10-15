@@ -1,10 +1,8 @@
-import java.util.ArrayList;
-
 public class Vuelo {
 
     double fechaSalida;
     double fechaLlegada;
-    Avion avion;
+    Plane plane;
     String codigoVuelo;
     String salida;
     String destino;
@@ -12,7 +10,7 @@ public class Vuelo {
     public Vuelo(){
         fechaSalida=20171103;
         fechaLlegada=20171104;
-        avion=new Avion();
+       // plane=new Plane();
         codigoVuelo="2";
         salida="Austral";
         destino="Itba";
