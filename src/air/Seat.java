@@ -1,3 +1,5 @@
+package air;
+
 public class Seat {
     private final char column;
     private final int row;

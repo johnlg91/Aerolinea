@@ -1,4 +1,4 @@
-package cosasAeropuerto;
+package air;
 
 public class Aeropuertos {
 

@@ -1,4 +1,4 @@
-import cosasAeropuerto.Aeropuerto;
+package air;
 
 import java.util.Date;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package cosasAeropuerto;
+package util;
 
 public class Point {
 
