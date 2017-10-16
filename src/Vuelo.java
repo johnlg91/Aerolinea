@@ -1,24 +1,28 @@
+import cosasAeropuerto.Aeropuerto;
+
 import java.util.Date;
+import java.util.HashMap;
 
 public class Vuelo {
 
-    Date fechaSalida;
-    Date fechaLlegada;
-    Plane plane;
-    String codigoVuelo;
-    String salida;
-    String destino;
+    private final HashMap<String,Seat> seats;
+    private Date etd;
+    private Date eta;
+    private Plane plane;
+    private String code;
+    private Aeropuerto departure;
+    private Aeropuerto arrival;
 
-    public Vuelo(String code, String planeCode) {
-        plane = Planes.findPlane(planeCode)
-
-        fechaSalida = =new Date(2017, 11, 03);
-        fechaLlegada = new Date(2017, 11, 04;
-        // plane=new Plane();
-        codigoVuelo = "2";
-        salida = "Austral";
-        destino = "Itba";
+    public Vuelo(String code, String planeCode, Aeropuerto departure, Aeropuerto arrival, Date etd, Date eta) {
+        plane = Planes.findPlane(planeCode);
+        this.etd =etd;
+        this.eta = eta;
+        this.code = code;
+        this.departure = departure;
+        this.arrival = arrival;
+        this.seats = plane.seats();
     }
+
 
 
 }

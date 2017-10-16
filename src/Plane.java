@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Plane {
 
@@ -23,12 +24,12 @@ public class Plane {
     }
 
     //Que pasa si el numero de seats exede 26? --> sonamos, pero no hay aviones tan anchos...
-    public ArrayList<Seat> seats() {
-        ArrayList<Seat> seats = new ArrayList<>();
+    public HashMap<String, Seat> seats() {
+        HashMap<String, Seat> seats = new HashMap<>();
         for (int i = 0; i < columns; i++) {
             for (int j = 0; j < rows; j++) {
                 Seat seat = new Seat(i, (char) (j + 'A'));
-                seats.add(seat);
+                seats.put(seat.toString(), seat);
             }
         }
         return seats;
