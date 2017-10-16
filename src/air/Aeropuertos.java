@@ -2,7 +2,45 @@ package air;
 
 public class Aeropuertos {
 
+    public static Aeropuerto getAustral() {
+        return Austral;
+    }
 
+    public static Aeropuerto getSalvador() {
+        return Salvador;
+    }
+
+    public static Aeropuerto getDitela() {
+        return Ditela;
+    }
+
+    public static Aeropuerto getSanAndres() {
+        return SanAndres;
+    }
+
+    public static Aeropuerto getUCA() {
+        return UCA;
+    }
+
+    public static Aeropuerto getUTN() {
+        return UTN;
+    }
+
+    public static Aeropuerto getUBA() {
+        return UBA;
+    }
+
+    public static Aeropuerto getITBA() {
+        return ITBA;
+    }
+
+    public static Aeropuerto getUADE() {
+        return UADE;
+    }
+
+    public static Aeropuerto getUP() {
+        return UP;
+    }
 
     static final Aeropuerto Austral = new Aeropuerto("Austral", 0, 0);
     static final Aeropuerto Salvador = new Aeropuerto("Salvador", 5, 2);
