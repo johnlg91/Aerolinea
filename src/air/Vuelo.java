@@ -9,6 +9,11 @@ public class Vuelo {
     private Date etd;
     private Date eta;
     private Plane plane;
+
+    public String getCode() {
+        return code;
+    }
+
     private String code;
     private Aeropuerto departure;
     private Aeropuerto arrival;
@@ -23,6 +28,7 @@ public class Vuelo {
         this.seats = plane.seats();
     }
 
-
-
+    public void printSeats() {
+        System.out.println(seats.values());
+    }
 }
