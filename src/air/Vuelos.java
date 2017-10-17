@@ -7,7 +7,7 @@ import java.util.HashMap;
 public class Vuelos {
     private static HashMap<String, Vuelo> vuelos;
 
-    static void add(Vuelo vuelo) {
+    public static void add(Vuelo vuelo) {
         vuelos.put(vuelo.getCode(), vuelo);
     }
 

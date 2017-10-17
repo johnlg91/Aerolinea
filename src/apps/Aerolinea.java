@@ -32,17 +32,16 @@ public class Aerolinea {
     }
 
     static void crearVuelo() {
-        Date etd = Scanner.getDate("Introduzca su fecha de salida");
-        Date eta = Scanner.getDate("Introduzca su fecha de llegada");
+        Date etd = Scanner.getDate("Introduzca su fecha de salida\n");
+        Date eta = Scanner.getDate("Introduzca su fecha de llegada\n");
         Vuelo a = new Vuelo("A", "737", Aeropuertos.getAustral(), Aeropuertos.getDitela(), etd, eta);
         Vuelos.add(a);
     }
 
     static void venderPasaje() {
 
-        System.out.println("Elija su asiento");
-        //a.printSeats();
-        Seat reserved = Scanner.getString();
+        //a.printSeats()
+        //Seat reserved = Scanner.getString("Elija su asiento");
 
     }
 
