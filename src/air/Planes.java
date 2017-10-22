@@ -3,7 +3,7 @@ package air;
 import java.util.HashMap;
 
 public class Planes {
-    private static HashMap<String, Plane> planes;
+    private static HashMap<String, Plane> planes = new HashMap<>();
 
     static void add(Plane plane) {
         planes.put(plane.getCode(), plane);

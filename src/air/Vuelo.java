@@ -31,4 +31,11 @@ public class Vuelo {
     public void printSeats() {
         System.out.println(seats.values());
     }
+
+    @Override
+    public String toString() {
+        return String.format("Vuelo: %5s %-10s ETD: %-30s  %-10s ETA: %-30s", code, departure, etd, arrival, eta);
+    }
 }
+
+

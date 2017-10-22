@@ -1,10 +1,7 @@
 package apps;
 
-import air.Aeropuertos;
-import air.Seat;
-import air.Vuelo;
+import air.*;
 import ui.Scanner;
-import air.Vuelos;
 
 import java.util.Date;
 
@@ -23,6 +20,9 @@ public class Aerolinea {
                 case 'p':
                     venderPasaje();
                     break;
+                case 'l':
+                    listarVuelos();
+                    break;
                 case 'q':
                     break;
                 default:
@@ -34,10 +34,16 @@ public class Aerolinea {
     static void crearVuelo() {
         Date etd = Scanner.getDate("Introduzca su fecha de salida\n");
         Date eta = Scanner.getDate("Introduzca su fecha de llegada\n");
-        Vuelo a = new Vuelo("A", "737", Aeropuertos.getAustral(), Aeropuertos.getDitela(), etd, eta);
-        Vuelos.add(a);
+        Vuelo vuelo = new Vuelo("A", "737", Aeropuertos.getAustral(), Aeropuertos.getDitela(), etd, eta);
+        Vuelos.add(vuelo);
+        out.println("Vuelos: '" + vuelo.getCode() + "' creado.");
     }
 
+    static void listarVuelos() {
+        for (Vuelo v: Vuelos.list()) {
+            out.println(v);
+        }
+    }
     static void venderPasaje() {
 
         //a.printSeats()
@@ -50,6 +56,7 @@ public class Aerolinea {
         out.println("= Aerolineas Australis  =");
         out.println("=========================");
         out.println("= v - crear un vuelo    =");
+        out.println("= l - lista de vuelos   =");
         out.println("= p - vender un pasaje  =");
         out.println("=========================");
         out.println();
