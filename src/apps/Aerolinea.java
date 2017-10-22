@@ -6,6 +6,7 @@ import ui.Scanner;
 import java.util.Date;
 
 import static java.lang.System.out;
+import static java.lang.System.setOut;
 
 public class Aerolinea {
     public static void main(String[] args) {
@@ -43,11 +44,16 @@ public class Aerolinea {
         for (Vuelo v: Vuelos.list()) {
             out.println(v);
         }
+
     }
     static void venderPasaje() {
+        listarVuelos();
+        Vuelo v = Vuelos.findVuelo(Scanner.getString("Elija su vuelo\n"));
+        if (v == null) out.println("Vuelo no encontrado");
+        else {
+            v.printSeats();
 
-        //a.printSeats()
-        //Seat reserved = Scanner.getString("Elija su asiento");
+        }
 
     }
 

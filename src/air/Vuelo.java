@@ -1,11 +1,11 @@
 package air;
 
 import java.util.Date;
-import java.util.HashMap;
+import java.util.TreeMap;
 
 public class Vuelo {
 
-    private final HashMap<String,Seat> seats;
+    private final TreeMap<String,Seat> seats;
     private Date etd;
     private Date eta;
     private Plane plane;
@@ -29,7 +29,15 @@ public class Vuelo {
     }
 
     public void printSeats() {
-        System.out.println(seats.values());
+        int row = 1;
+        for (Seat seat : seats.values()) {
+            if (seat.getRow() != row) {
+                System.out.println();
+                row = seat.getRow();
+            }
+            System.out.print(seat);
+        }
+        System.out.println("\n");
     }
 
     @Override

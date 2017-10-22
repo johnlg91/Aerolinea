@@ -2,11 +2,11 @@ package air;
 
 import java.util.Collection;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.TreeMap;
 
 
 public class Vuelos {
-    private static HashMap<String, Vuelo> vuelos = new HashMap<>();
+    private static TreeMap<String, Vuelo> vuelos = new TreeMap<>();
 
     public static void add(Vuelo vuelo) {
         vuelos.put(vuelo.getCode(), vuelo);

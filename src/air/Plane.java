@@ -1,6 +1,6 @@
 package air;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 
 public class Plane {
 
@@ -25,10 +25,10 @@ public class Plane {
     }
 
     //Que pasa si el numero de seats exede 26? --> sonamos, pero no hay aviones tan anchos...
-    public HashMap<String, Seat> seats() {
-        HashMap<String, Seat> seats = new HashMap<>();
-        for (int i = 0; i < columns; i++) {
-            for (int j = 0; j < rows; j++) {
+    public TreeMap<String, Seat> seats() {
+        TreeMap<String, Seat> seats = new TreeMap<>();
+        for (int i = 1; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
                 Seat seat = new Seat(i, (char) (j + 'A'));
                 seats.put(seat.toString(), seat);
             }
