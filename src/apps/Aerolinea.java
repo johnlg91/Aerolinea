@@ -6,7 +6,6 @@ import ui.Scanner;
 import java.util.Date;
 
 import static java.lang.System.out;
-import static java.lang.System.setOut;
 
 public class Aerolinea {
     public static void main(String[] args) {
@@ -41,21 +40,45 @@ public class Aerolinea {
     }
 
     static void listarVuelos() {
-        for (Vuelo v: Vuelos.list()) {
+        for (Vuelo v : Vuelos.list()) {
             out.println(v);
         }
-
     }
+
     static void venderPasaje() {
         listarVuelos();
-        Vuelo v = Vuelos.findVuelo(Scanner.getString("Elija su vuelo\n"));
-        if (v == null) out.println("Vuelo no encontrado");
-        else {
-            v.printSeats();
-
-        }
-
+        Vuelo v = leerVUelo();
+        v.printSeats();
+        leerSeat(v);
     }
+
+    static Seat leerSeat(Vuelo v) {
+        String code = Scanner.getString("Elija su asiento\n");
+        Seat s = v.getSeat(code);
+        if (s == null) {
+            out.println("Asiento incorrecto por favor elija otro\n");
+            return leerSeat(v);
+        } else {
+            if (s.isReserved()) {
+                out.println("El asiento que a eligio esta ocupado por favor elija otro\n");
+                return leerSeat(v);
+            } else {
+                s.setReserved(true);
+                out.println("Su asiento ha sido reservado\n ");
+                out.println("Que tenga un buen día\n");
+                return s;
+            }
+        }
+    }
+
+    static Vuelo leerVUelo() {
+        Vuelo v = Vuelos.findVuelo(Scanner.getString("Elija su vuelo\n"));
+        if (v == null) {
+            out.println("Vuelo no encontrado por favor seleccione otro");
+            return leerVUelo();
+        } else return v;
+    }
+
 
     static void printMenu() {
         out.println("=========================");

@@ -1,9 +1,9 @@
 package air;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 
 public class Planes {
-    private static HashMap<String, Plane> planes = new HashMap<>();
+    private static TreeMap<String, Plane> planes = new TreeMap<>();
 
     static void add(Plane plane) {
         planes.put(plane.getCode(), plane);

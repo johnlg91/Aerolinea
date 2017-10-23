@@ -1,11 +1,12 @@
 package air;
 
 import java.util.Date;
+import java.util.Map;
 import java.util.TreeMap;
 
 public class Vuelo {
 
-    private final TreeMap<String,Seat> seats;
+    private final Map<String,Seat> seats;
     private Date etd;
     private Date eta;
     private Plane plane;
@@ -35,9 +36,12 @@ public class Vuelo {
                 System.out.println();
                 row = seat.getRow();
             }
-            System.out.print(seat);
+            System.out.print(seat + " ");
         }
         System.out.println("\n");
+    }
+    public Seat getSeat(String code) {
+        return seats.get(code);
     }
 
     @Override

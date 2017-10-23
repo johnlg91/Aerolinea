@@ -29,6 +29,6 @@ public class Seat {
 
     @Override
     public String toString() {
-        return String.format("%3s%c", row, column);
+        return String.valueOf(row) + column;
     }
 }
