@@ -117,30 +117,4 @@ public class Scanner {
             return getDate(message);
         }
     }
-
-
-    public static void main(String[] args) {
-//        final String text = Scanner.getString("Enter some text: ");
-//        System.out.println("The entered text was: " + text);
-//
-//        final char c = Scanner.getChar("Enter a char: ");
-//        System.out.println("The entered char is: " + c);
-//
-//        final int i = Scanner.getInt("Enter an int: ");
-//        System.out.println("The entered int is: " + i);
-//
-//        final long l = Scanner.getLong("Enter a long: ");
-//        System.out.println("The entered long is: " + l);
-//
-//        final float f = Scanner.getFloat("Enter a float: ");
-//        System.out.println("The entered float is: " + f);
-//
-//        final double d = Scanner.getDouble("Enter a double: ");
-//        System.out.println("The entered double is: " + d);
-
-        final Date date = Scanner.getDate("Enter a date: ");
-        System.out.println("The entered date is: " + date);
-
-    }
 }
-
