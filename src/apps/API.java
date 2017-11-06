@@ -14,14 +14,14 @@ public class API {
             printMenu();
             cmd = Scanner.getChar("Ingrese el comando o 'q' para salir\n");
             switch (cmd) {
-                case 'Admin':
-                    ;
+                case 'A':
+
                     break;
-                case 'Piloto':
-                    ;
+                case 'P':
+
                     break;
-                case 'Cliente':
-                    ;
+                case 'C':
+
                     break;
                 case 'q':
                     break;
