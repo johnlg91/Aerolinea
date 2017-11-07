@@ -16,15 +16,11 @@ public class Plane {
         this.columns = columns;
     }
 
-    @Override
-    public String toString() {
-        return code;
-    }
-
     public String getCode() {
         return code;
     }
 
+    //Cuando creo un avion esto automaticamente crea sus asientos
     //Que pasa si el numero de seats exede 26? --> sonamos, pero no hay aviones tan anchos...
     public Map<String, Seat> seats() {
         Map<String, Seat> seats = new LinkedHashMap<>();
@@ -36,4 +32,10 @@ public class Plane {
         }
         return seats;
     }
+
+    @Override
+    public String toString() {
+        return code;
+    }
+
 }
