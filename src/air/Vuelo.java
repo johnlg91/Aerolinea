@@ -18,8 +18,8 @@ public class Vuelo {
     private Aeropuerto departure;
     private Aeropuerto arrival;
 
-    public Vuelo(String code, String planeCode, Aeropuerto departure, Aeropuerto arrival, Date etd, Date eta) {
-        plane = Planes.findPlane(planeCode);
+    public Vuelo(String code, Plane plane, Aeropuerto departure, Aeropuerto arrival, Date etd, Date eta) {
+        this.plane = plane;
         this.etd =etd;
         this.eta = eta;
         this.code = code;
@@ -28,17 +28,7 @@ public class Vuelo {
         this.seats = plane.seats();
     }
 
-    public void printSeats() {
-        int row = 1;
-        for (Seat seat : seats.values()) {
-            if (seat.getRow() != row) {
-                System.out.println();
-                row = seat.getRow();
-            }
-            System.out.print(seat + " ");
-        }
-        System.out.println("\n");
-    }
+
     public Seat getSeat(String code) {
         return seats.get(code);
     }
@@ -46,6 +36,10 @@ public class Vuelo {
     @Override
     public String toString() {
         return String.format("Vuelo: %5s %-10s ETD: %-30s  %-10s ETA: %-30s", code, departure, etd, arrival, eta);
+    }
+
+    public Iterable<Seat> getSeats() {
+        return seats.values();
     }
 }
 
