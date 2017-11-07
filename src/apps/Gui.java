@@ -23,6 +23,8 @@ public class Gui {
     }
 
 
+    //Lectores, verifican q el objeto exista [
+
     public Aeropuerto leerAeropuerto(String msg) {
         String airporCode = Scanner.getString(msg);
         Aeropuerto a = server.findAeropuerto(airporCode);
@@ -48,6 +50,7 @@ public class Gui {
         return leerAvion(msg);
     }
 
+    // ]
 
     //Metodos Print
 
@@ -55,6 +58,11 @@ public class Gui {
         for (Vuelo v : server.getVuelosMap()) {
             out.println(v);
         }
+    }
+
+    public void printAeropuertos() {
+        for (String a : server.getAeropuertosNames())
+            out.println(a);
     }
 
     public void printSeats(Iterable<Seat> seats) {
@@ -72,18 +80,25 @@ public class Gui {
         out.println("|\n");
     }
 
+    // ]
 
-    //Metodos Create
+
+    //Metodos Create [
 
     public void createVuelo() {
         String flightCode = Scanner.getString("Introdusca el codigo de vuelo\n");
-        Date etd = Scanner.getDate("Introduzca su fecha de salida\n");
-        Date eta = Scanner.getDate("Introduzca su fecha de llegada\n");
-        Plane plane = leerAvion("Introduzca el tipo de Avion\n");
-        Aeropuerto aeropuertoDesde = leerAeropuerto("Aeropuerto desde\n");
-        Aeropuerto aeropuertoHasta = leerAeropuerto("Aeropuerto hasta\n");
-        server.crearVuelo(flightCode, plane.getCode(), aeropuertoDesde, aeropuertoHasta, etd, eta);
-        out.println("Vuelo: '" + flightCode + "' registrado.");
+        if (server.isInVueloKeySet(flightCode)) {
+            out.println("Codigo de vuelo ya existente iroduzca otro\n");
+            createVuelo();
+        } else {
+            Date etd = Scanner.getDate("Introduzca su fecha de salida\n");
+            Date eta = Scanner.getDate("Introduzca su fecha de llegada\n");
+            Plane plane = leerAvion("Introduzca el tipo de Avion\n");
+            Aeropuerto aeropuertoDesde = leerAeropuerto("Aeropuerto desde\n");
+            Aeropuerto aeropuertoHasta = leerAeropuerto("Aeropuerto hasta\n");
+            server.crearVuelo(flightCode, plane.getCode(), aeropuertoDesde, aeropuertoHasta, etd, eta);
+            out.println("Vuelo: '" + flightCode + "' registrado.");
+        }
     }
 
     public void createAvion() {
@@ -112,6 +127,8 @@ public class Gui {
             out.println("El Avion '" + name + "' a sido registrado.");
         }
     }
+
+    // ]
 
 
     public void venderPasaje() {
