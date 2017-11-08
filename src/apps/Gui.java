@@ -55,7 +55,7 @@ public class Gui {
 
     //Metodos Print
 
-    public void printVuelos() {
+    public void printFlights() {
         for (Flight v : server.getVuelosMap()) {
             out.println(v);
         }
@@ -95,17 +95,24 @@ public class Gui {
     //Metodos Create [
 
     public void createVuelo() {
-        String flightCode = Scanner.getString("Introdusca el codigo de vuelo\n");
+        String flightCode = Scanner.getString("Introdusca un nuevo codigo de vuelo\n");
         if (server.isInVueloKeySet(flightCode)) {
             out.println("Codigo de vuelo ya existente iroduzca otro\n");
             createVuelo();
         } else {
             Date etd = Scanner.getDate("Introduzca su fecha de salida\n");
             Date eta = Scanner.getDate("Introduzca su fecha de llegada\n");
-            Plane plane = leerAvion("Introduzca el tipo de Avion\n");
+            out.println("Codigo de aviones disponibles: ");
+            Plane plane = leerAvion("Introduzca el codigo de un Avion\n");
+            out.println("------------------Aeropuertos----------------");
+            printAeropuertos();
+            out.println("---------------------------------------------");
             Airport airportDesde = leerAeropuerto("Airport desde\n");
+            out.println("------------------Aeropuertos----------------");
+            printAeropuertos();
+            out.println("---------------------------------------------");
             Airport airportHasta = leerAeropuerto("Airport hasta\n");
-            server.crearVuelo(flightCode, plane.getCode(), airportDesde, airportHasta, etd, eta);
+            server.crearFlight(flightCode, plane.getCode(), airportDesde, airportHasta, etd, eta);
             out.println("Flight: '" + flightCode + "' registrado.");
         }
     }
@@ -118,7 +125,7 @@ public class Gui {
         } else {
             int rows = Scanner.getInt("Introduzca la cantidad de filas");
             int columns = Scanner.getInt("Introduzca la cantidad de columnas");
-            server.crearAvion(planeCode, rows, columns);
+            server.crearPlane(planeCode, rows, columns);
             out.println("El Avion '" + planeCode + "' a sido registrado.");
         }
     }
@@ -139,11 +146,11 @@ public class Gui {
 
     public void createCliente() {
         int DNI = Scanner.getInt("Introduzca su DNI");
-        if (server.isInClienteKeySet(DNI)) {
+        if (server.isInClientKeySet(DNI)) {
             out.println("El usuario ya esta registrado");
         } else {
             String name = Scanner.getString("Introduzca su name");
-            server.crearCliente(DNI, name);
+            server.crearClient(DNI, name);
         }
     }
 
@@ -151,7 +158,7 @@ public class Gui {
 
 
     public void sellTicket() {
-        printVuelos();
+        printFlights();
         Flight flight = leerVuelo();
         printSeats(flight.getSeats());
         reserveSeat(flight.getCode());
@@ -186,5 +193,13 @@ public class Gui {
         return s;
     }
 
+    public void checkClient() {
+        int DNI = Scanner.getInt("Introduzca su DNI");
+        String name = Scanner.getString("Introduzca su nombre");
+        if (server.isInClientKeySet(DNI));
+        else {
+            out.println("Usuario no registrado desea registrarse");
+        }
 
+    }
 }

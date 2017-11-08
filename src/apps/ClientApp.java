@@ -1,5 +1,6 @@
 package apps;
 
+import api.Server;
 import impl.BasicServer;
 import util.Scanner;
 
@@ -18,10 +19,10 @@ public class ClientApp {
                     gui.sellTicket();
                     break;
                 case 's':
-                    gui.printVuelos();
+                    gui.printFlights();
                     break;
                 case 'd':
-                    //get.reservas
+                    //getreservs();
                     break;
                 case 'q':
                     break;

@@ -10,11 +10,11 @@ import java.util.Date;
 public interface Server {
 
     //Creators [
-    void crearVuelo(String flightCode, String planeCode, Airport from, Airport to, Date etd, Date eta);
+    void crearFlight(String flightCode, String planeCode, Airport from, Airport to, Date etd, Date eta);
 
-    void crearCliente(int dni, String nombre);
+    void crearClient(int dni, String nombre);
 
-    void crearAvion(String planeCode, int rows, int cols);
+    void crearPlane(String planeCode, int rows, int cols);
 
     void crearAeropuerto(String name, int x, int y);
     // ]
@@ -47,5 +47,5 @@ public interface Server {
 
     boolean isInVueloKeySet(String key);
 
-    boolean isInClienteKeySet(int dni);
+    boolean isInClientKeySet(int dni);
 }

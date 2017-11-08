@@ -22,7 +22,7 @@ public class AdminApp {
                     gui.sellTicket();
                     break;
                 case 'd':
-                    gui.printVuelos();
+                    gui.printFlights();
                     break;
                 case 'f':
                     gui.createAvion();

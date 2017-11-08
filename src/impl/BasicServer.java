@@ -1,9 +1,12 @@
 package impl;
 
 import air.*;
+
 import java.io.*;
+
 import api.Server;
 import people.PersonClient;
+
 import java.util.Date;
 import java.util.TreeMap;
 
@@ -78,40 +81,33 @@ public class BasicServer implements Server {
 
     @Override
     public void crearAeropuerto(String name, int x, int y) {
-
         String fileName = "Airport";
         try {
             FileWriter fileWriter = new FileWriter(fileName);
-
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-
             bufferedWriter.write("Nombre del Aeropuerto: " + name + ". Posición: " + x + ", " + y + ".");
             bufferedWriter.newLine();
-
             bufferedWriter.close();
-        }
-
-        catch (IOException ex) {
+        } catch (IOException ex) {
             System.out.println("Error writing to file ' " + fileName + " '.");
         }
-
         aeropuertosMap.put(name, new Airport(name, x, y));
     }
 
     @Override
-    public void crearCliente(int dni, String nombre) {
+    public void crearClient(int dni, String nombre) {
         PersonClient c = new PersonClient(dni, nombre);
         clientesMap.put(dni, c);
     }
 
     @Override
-    public void crearVuelo(String flightCode, String planeCode, Airport from, Airport to, Date etd, Date eta) {
+    public void crearFlight(String flightCode, String planeCode, Airport from, Airport to, Date etd, Date eta) {
         Flight flight = new Flight(flightCode, findPlane(planeCode), from, to, etd, eta);
         vuelosMap.put(flight.getCode(), flight);
     }
 
     @Override
-    public void crearAvion(String planeCode, int rows, int cols) {
+    public void crearPlane(String planeCode, int rows, int cols) {
         Plane plane = new Plane(planeCode, rows, cols);
         planesMap.put(planeCode, plane);
     }
@@ -138,7 +134,7 @@ public class BasicServer implements Server {
     }
 
     @Override
-    public boolean isInClienteKeySet(int dni) {
+    public boolean isInClientKeySet(int dni) {
         return clientesMap.containsKey(dni);
     }
 
@@ -154,16 +150,16 @@ public class BasicServer implements Server {
         crearAeropuerto("San Andres", -1, -4);
 
         // Aviones
-        crearAvion("737", 30, 6);
-        crearAvion("777", 50, 8);
+        crearPlane("737", 30, 6);
+        crearPlane("777", 50, 8);
 
         // Vuelos
-        crearVuelo("0", "737", findAeropuerto("Austral"), findAeropuerto("Di Tella"), new Date("2017/7/2"), new Date("2017/7/3"));
-        crearVuelo("1", "777", findAeropuerto("Salvador"), findAeropuerto("San Andres"), new Date("2/8/2017"), new Date("2017/8/3"));
+        crearFlight("0", "737", findAeropuerto("Austral"), findAeropuerto("Di Tella"), new Date("2017/7/2"), new Date("2017/7/3"));
+        crearFlight("1", "777", findAeropuerto("Salvador"), findAeropuerto("San Andres"), new Date("2/8/2017"), new Date("2017/8/3"));
 
         // Clientes
-        crearCliente(123, "Juan Perez");
-        crearCliente(1234, "John Petersen");
+        crearClient(123, "Juan Perez");
+        crearClient(1234, "John Petersen");
 
         //Tickets
 
