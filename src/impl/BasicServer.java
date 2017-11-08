@@ -1,6 +1,7 @@
 package impl;
 
 import air.*;
+import java.io.*;
 import api.Server;
 import people.PersonClient;
 import java.util.Date;
@@ -77,6 +78,23 @@ public class BasicServer implements Server {
 
     @Override
     public void crearAeropuerto(String name, int x, int y) {
+
+        String fileName = "Airport";
+        try {
+            FileWriter fileWriter = new FileWriter(fileName);
+
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            bufferedWriter.write("Nombre del Aeropuerto: " + name + ". Posición: " + x + ", " + y + ".");
+            bufferedWriter.newLine();
+
+            bufferedWriter.close();
+        }
+
+        catch (IOException ex) {
+            System.out.println("Error writing to file ' " + fileName + " '.");
+        }
+
         aeropuertosMap.put(name, new Airport(name, x, y));
     }
 
