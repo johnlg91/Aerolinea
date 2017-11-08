@@ -36,8 +36,8 @@ public class ClientApp {
         out.println("\n==========================");
         out.println("= Aerolineas Australis   =");
         out.println("==========================");
-        out.println("= a - Listar vuelos      =");
-        out.println("= s - Comprar un pasaje  =");
+        out.println("= s - Listar vuelos      =");
+        out.println("= a - Comprar un pasaje  =");
         out.println("= d - Listar mis vuelos  =");
         out.println("=========================\n");
     }

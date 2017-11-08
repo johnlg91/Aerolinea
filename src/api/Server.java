@@ -4,7 +4,7 @@ import air.Aeropuerto;
 import air.Plane;
 import air.Seat;
 import air.Vuelo;
-import people.Cliente;
+import people.PersonClient;
 import java.util.Date;
 
 public interface Server {
@@ -37,7 +37,7 @@ public interface Server {
 
     Iterable<String> getAeropuertosNames();
 
-    Iterable<Cliente> getClientesMap();
+    Iterable<PersonClient> getClientesMap();
 
     // ]
 

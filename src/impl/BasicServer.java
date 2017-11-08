@@ -2,8 +2,7 @@ package impl;
 
 import air.*;
 import api.Server;
-import people.Cliente;
-
+import people.PersonClient;
 import java.util.Date;
 import java.util.TreeMap;
 
@@ -19,7 +18,7 @@ public class BasicServer implements Server {
     private TreeMap<String, Plane> planesMap = new TreeMap<>();
 
     // Clientes Guardados en mapa
-    private TreeMap<Integer, Cliente> clientesMap = new TreeMap<>();
+    private TreeMap<Integer, PersonClient> clientesMap = new TreeMap<>();
 
     // Tickets Guardados en mapa
     private TreeMap<String, Ticket> ticketMap = new TreeMap<>();
@@ -42,7 +41,7 @@ public class BasicServer implements Server {
     }
 
     @Override
-    public Iterable<Cliente> getClientesMap() {
+    public Iterable<PersonClient> getClientesMap() {
         return clientesMap.values();
     }
 
@@ -62,7 +61,7 @@ public class BasicServer implements Server {
         return aeropuertosMap.get(code);
     }
 
-    public Cliente findCliente(String DNI) {
+    public PersonClient findCliente(String DNI) {
         return clientesMap.get(DNI);
     }
 
@@ -83,7 +82,7 @@ public class BasicServer implements Server {
 
     @Override
     public void crearCliente(int dni, String nombre) {
-        Cliente c = new Cliente(dni, nombre);
+        PersonClient c = new PersonClient(dni, nombre);
         clientesMap.put(dni, c);
     }
 

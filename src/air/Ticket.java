@@ -1,17 +1,17 @@
 package air;
 
-import people.Cliente;
+import people.PersonClient;
 
 public class Ticket {
-    private Cliente cliente;
+    private PersonClient personClient;
     private Vuelo vuelo;
     private Seat seat;
     private String ticketCode;
 
-    public Ticket(Cliente cliente, Vuelo vuelo, Seat seat) {
+    public Ticket(PersonClient personClient, Vuelo vuelo, Seat seat) {
         this.vuelo = vuelo;
         this.seat = seat;
-        this.cliente = cliente;
+        this.personClient = personClient;
         ticketCode = seat.toString() + vuelo.toString();
     }
 }

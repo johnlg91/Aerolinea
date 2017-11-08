@@ -5,13 +5,13 @@ import air.Ticket;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cliente extends People {
+public class PersonClient extends Person {
 
 
     private List<Ticket> tickets = new ArrayList<>();
 
 
-    public Cliente(int DNI, String nombre) {
+    public PersonClient(int DNI, String nombre) {
         super(DNI, nombre);
     }
 

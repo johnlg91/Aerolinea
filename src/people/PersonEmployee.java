@@ -1,11 +1,11 @@
 package people;
 
-public abstract class Empleado extends People {
+public abstract class PersonEmployee extends Person {
 
     int DNI = super.DNI;
     String nombre = super.name;
 
-    public Empleado(int DNI, String nombre) {
+    public PersonEmployee(int DNI, String nombre) {
         super(DNI, nombre);
     }
 }

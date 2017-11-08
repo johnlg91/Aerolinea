@@ -5,8 +5,7 @@ import air.Plane;
 import air.Seat;
 import air.Vuelo;
 import api.Server;
-import com.sun.javafx.binding.StringFormatter;
-import people.Cliente;
+import people.PersonClient;
 import util.Scanner;
 
 import java.util.Date;
@@ -69,7 +68,7 @@ public class Gui {
 
     //Corregirlo para q todos los dni terminen en la misma linea
     public void printClientes() {
-        for (Cliente c : server.getClientesMap()) {
+        for (PersonClient c : server.getClientesMap()) {
             out.println(c.getName() + "_______" + c.getDNI());
         }
     }
@@ -112,9 +111,9 @@ public class Gui {
     }
 
     public void createAvion() {
-        String planeCode = Scanner.getString("Intoduzca el codigo de Avion");
+        String planeCode = Scanner.getString("Cree un codigo para el Avion");
         if (server.isInPlaneKeySet(planeCode)) {
-            out.println("Codigo de avion ya existente introduzca otro");
+            out.println("Codigo de avion ya existente introduzca otro\n");
             createAvion();
         } else {
             int rows = Scanner.getInt("Introduzca la cantidad de filas");
