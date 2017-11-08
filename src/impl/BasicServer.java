@@ -9,7 +9,7 @@ import java.util.TreeMap;
 public class BasicServer implements Server {
 
     // Aeropuertos guardados en mapa
-    private TreeMap<String, Aeropuerto> aeropuertosMap = new TreeMap<>();
+    private TreeMap<String, Airport> aeropuertosMap = new TreeMap<>();
 
     // Vuelos Guardados en mapa
     private TreeMap<String, Vuelo> vuelosMap = new TreeMap<>();
@@ -57,7 +57,7 @@ public class BasicServer implements Server {
         return vuelosMap.get(code);
     }
 
-    public Aeropuerto findAeropuerto(String code) {
+    public Airport findAeropuerto(String code) {
         return aeropuertosMap.get(code);
     }
 
@@ -77,7 +77,7 @@ public class BasicServer implements Server {
 
     @Override
     public void crearAeropuerto(String name, int x, int y) {
-        aeropuertosMap.put(name, new Aeropuerto(name, x, y));
+        aeropuertosMap.put(name, new Airport(name, x, y));
     }
 
     @Override
@@ -87,7 +87,7 @@ public class BasicServer implements Server {
     }
 
     @Override
-    public void crearVuelo(String flightCode, String planeCode, Aeropuerto from, Aeropuerto to, Date etd, Date eta) {
+    public void crearVuelo(String flightCode, String planeCode, Airport from, Airport to, Date etd, Date eta) {
         Vuelo vuelo = new Vuelo(flightCode, findPlane(planeCode), from, to, etd, eta);
         vuelosMap.put(vuelo.getCode(), vuelo);
     }

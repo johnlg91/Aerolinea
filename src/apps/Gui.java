@@ -1,6 +1,6 @@
 package apps;
 
-import air.Aeropuerto;
+import air.Airport;
 import air.Plane;
 import air.Seat;
 import air.Vuelo;
@@ -26,9 +26,9 @@ public class Gui {
 
     //Lectores, verifican q el objeto exista [
 
-    public Aeropuerto leerAeropuerto(String msg) {
+    public Airport leerAeropuerto(String msg) {
         String airporCode = Scanner.getString(msg);
-        Aeropuerto a = server.findAeropuerto(airporCode);
+        Airport a = server.findAeropuerto(airporCode);
         if (a != null) return a;
         out.println("Codigo de aeropuerto incorrecto\n");
         return leerAeropuerto(msg);
@@ -103,9 +103,9 @@ public class Gui {
             Date etd = Scanner.getDate("Introduzca su fecha de salida\n");
             Date eta = Scanner.getDate("Introduzca su fecha de llegada\n");
             Plane plane = leerAvion("Introduzca el tipo de Avion\n");
-            Aeropuerto aeropuertoDesde = leerAeropuerto("Aeropuerto desde\n");
-            Aeropuerto aeropuertoHasta = leerAeropuerto("Aeropuerto hasta\n");
-            server.crearVuelo(flightCode, plane.getCode(), aeropuertoDesde, aeropuertoHasta, etd, eta);
+            Airport airportDesde = leerAeropuerto("Airport desde\n");
+            Airport airportHasta = leerAeropuerto("Airport hasta\n");
+            server.crearVuelo(flightCode, plane.getCode(), airportDesde, airportHasta, etd, eta);
             out.println("Vuelo: '" + flightCode + "' registrado.");
         }
     }
@@ -127,7 +127,7 @@ public class Gui {
     public void createAeropuerto() {
         String name = Scanner.getString("Intoduzca el name del aeropuerto");
         if (server.isInPlaneKeySet(name)) {
-            out.println("Aeropuerto ya existente introduzca otro");
+            out.println("Airport ya existente introduzca otro");
             createAeropuerto();
         } else {
             int x = Scanner.getInt("Introduzca su ubicacion en el plano X");
@@ -154,23 +154,35 @@ public class Gui {
         printVuelos();
         Vuelo vuelo = leerVuelo();
         printSeats(vuelo.getSeats());
-        reservarSeat(vuelo.getCode());
+        reserveSeat(vuelo.getCode());
     }
 
-    public Seat reservarSeat(String fligthCode) {
+    public Seat reserveSeat(String fligthCode) {
         String seatCode = Scanner.getString("Elija su asiento\n");
         Seat s = server.findSeat(fligthCode, seatCode);
         if (s == null) {
             out.println("Asiento incorrecto por favor elija otro\n");
-            return reservarSeat(fligthCode);
+            return reserveSeat(fligthCode);
         }
         if (s.isReserved()) {
             out.println("El asiento que a eligio esta ocupado por favor elija otro\n");
-            return reservarSeat(fligthCode);
+            return reserveSeat(fligthCode);
         }
         server.reserveSeat(fligthCode, seatCode);
         out.println("Su asiento ha sido reservado\n ");
-        out.println("Que tenga un buen día\n");
+        char macarena = Scanner.getChar("Introduzca 'y' para reservar otro asiento.\n" +
+                "Intoduzca 'n' para finalizar la reserva.\n");
+        switch (macarena) {
+            case 'y':
+                sellTicket();
+                break;
+            case 'n':
+                out.println("Que tenga un buen día\n");
+                break;
+            default:
+                out.println("Commando Invalido\n");
+                break;
+        }
         return s;
     }
 

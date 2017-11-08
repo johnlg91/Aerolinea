@@ -10,10 +10,10 @@ public class Vuelo {
     private Date eta;
     private Plane plane;
     private String code;
-    private Aeropuerto departure;
-    private Aeropuerto arrival;
+    private Airport departure;
+    private Airport arrival;
 
-    public Vuelo(String code, Plane plane, Aeropuerto departure, Aeropuerto arrival, Date etd, Date eta) {
+    public Vuelo(String code, Plane plane, Airport departure, Airport arrival, Date etd, Date eta) {
         this.plane = plane;
         this.etd = etd;
         this.eta = eta;
@@ -37,7 +37,7 @@ public class Vuelo {
 
     @Override
     public String toString() {
-        return String.format("Vuelo: %5s %-10s ETD: %-30s  %-10s ETA: %-30s", code, departure, etd, arrival, eta);
+        return String.format("Vuelo: %5s %-10s ETD: %-30s  %-10s ETA: %-30s\n", code, departure, etd, arrival, eta);
     }
 }
 

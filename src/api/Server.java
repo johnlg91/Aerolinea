@@ -1,6 +1,6 @@
 package api;
 
-import air.Aeropuerto;
+import air.Airport;
 import air.Plane;
 import air.Seat;
 import air.Vuelo;
@@ -10,7 +10,7 @@ import java.util.Date;
 public interface Server {
 
     //Creators [
-    void crearVuelo(String flightCode, String planeCode, Aeropuerto from, Aeropuerto to, Date etd, Date eta);
+    void crearVuelo(String flightCode, String planeCode, Airport from, Airport to, Date etd, Date eta);
 
     void crearCliente(int dni, String nombre);
 
@@ -20,7 +20,7 @@ public interface Server {
     // ]
 
     //Finders [
-    Aeropuerto findAeropuerto(String code);
+    Airport findAeropuerto(String code);
 
     Vuelo findVuelo(String flightCode);
 
