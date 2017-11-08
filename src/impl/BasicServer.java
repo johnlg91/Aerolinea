@@ -12,7 +12,7 @@ public class BasicServer implements Server {
     private TreeMap<String, Airport> aeropuertosMap = new TreeMap<>();
 
     // Vuelos Guardados en mapa
-    private TreeMap<String, Vuelo> vuelosMap = new TreeMap<>();
+    private TreeMap<String, Flight> vuelosMap = new TreeMap<>();
 
     // Aviones Guardados en mapa
     private TreeMap<String, Plane> planesMap = new TreeMap<>();
@@ -31,7 +31,7 @@ public class BasicServer implements Server {
     }
 
     @Override
-    public Iterable<Vuelo> getVuelosMap() {
+    public Iterable<Flight> getVuelosMap() {
         return vuelosMap.values();
     }
 
@@ -53,7 +53,7 @@ public class BasicServer implements Server {
         return planesMap.get(code);
     }
 
-    public Vuelo findVuelo(String code) {
+    public Flight findVuelo(String code) {
         return vuelosMap.get(code);
     }
 
@@ -88,8 +88,8 @@ public class BasicServer implements Server {
 
     @Override
     public void crearVuelo(String flightCode, String planeCode, Airport from, Airport to, Date etd, Date eta) {
-        Vuelo vuelo = new Vuelo(flightCode, findPlane(planeCode), from, to, etd, eta);
-        vuelosMap.put(vuelo.getCode(), vuelo);
+        Flight flight = new Flight(flightCode, findPlane(planeCode), from, to, etd, eta);
+        vuelosMap.put(flight.getCode(), flight);
     }
 
     @Override

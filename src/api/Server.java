@@ -1,9 +1,9 @@
 package api;
 
 import air.Airport;
+import air.Flight;
 import air.Plane;
 import air.Seat;
-import air.Vuelo;
 import people.PersonClient;
 import java.util.Date;
 
@@ -22,7 +22,7 @@ public interface Server {
     //Finders [
     Airport findAeropuerto(String code);
 
-    Vuelo findVuelo(String flightCode);
+    Flight findVuelo(String flightCode);
 
     Plane findPlane(String code);
 
@@ -33,7 +33,7 @@ public interface Server {
     //MapGetters [
     Iterable<String> getPlanesCodes();
 
-    Iterable<Vuelo> getVuelosMap();
+    Iterable<Flight> getVuelosMap();
 
     Iterable<String> getAeropuertosNames();
 

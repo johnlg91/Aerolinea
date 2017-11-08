@@ -3,7 +3,7 @@ package air;
 import java.util.Date;
 import java.util.Map;
 
-public class Vuelo {
+public class Flight {
 
     private final Map<String, Seat> seats;
     private Date etd;
@@ -13,7 +13,7 @@ public class Vuelo {
     private Airport departure;
     private Airport arrival;
 
-    public Vuelo(String code, Plane plane, Airport departure, Airport arrival, Date etd, Date eta) {
+    public Flight(String code, Plane plane, Airport departure, Airport arrival, Date etd, Date eta) {
         this.plane = plane;
         this.etd = etd;
         this.eta = eta;
@@ -37,7 +37,7 @@ public class Vuelo {
 
     @Override
     public String toString() {
-        return String.format("Vuelo: %5s %-10s ETD: %-30s  %-10s ETA: %-30s\n", code, departure, etd, arrival, eta);
+        return String.format("Flight: %5s %-10s ETD: %-30s  %-10s ETA: %-30s\n", code, departure, etd, arrival, eta);
     }
 }
 
