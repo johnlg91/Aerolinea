@@ -158,7 +158,7 @@ public class Gui {
     }
 
     public Seat reserveSeat(String fligthCode) {
-        String seatCode = Scanner.getString("Elija su asiento\n");
+        String seatCode = Scanner.getString("Elija su asiento\n").toUpperCase();
         Seat s = server.findSeat(fligthCode, seatCode);
         if (s == null) {
             out.println("Asiento incorrecto por favor elija otro\n");
