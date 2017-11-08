@@ -1,9 +1,9 @@
 package apps;
 
 import air.Airport;
+import air.Flight;
 import air.Plane;
 import air.Seat;
-import air.Vuelo;
 import api.Server;
 import people.PersonClient;
 import util.Scanner;
@@ -35,10 +35,10 @@ public class Gui {
 
     }
 
-    public Vuelo leerVuelo() {
-        Vuelo vuelo = server.findVuelo(Scanner.getString("Elija su vuelo\n"));
-        if (vuelo != null) return vuelo;
-        out.println("Vuelo no encontrado por favor seleccione otro");
+    public Flight leerVuelo() {
+        Flight flight = server.findVuelo(Scanner.getString("Elija su flight\n"));
+        if (flight != null) return flight;
+        out.println("Flight no encontrado por favor seleccione otro");
         return leerVuelo();
     }
 
@@ -56,7 +56,7 @@ public class Gui {
     //Metodos Print
 
     public void printVuelos() {
-        for (Vuelo v : server.getVuelosMap()) {
+        for (Flight v : server.getVuelosMap()) {
             out.println(v);
         }
     }
@@ -106,7 +106,7 @@ public class Gui {
             Airport airportDesde = leerAeropuerto("Airport desde\n");
             Airport airportHasta = leerAeropuerto("Airport hasta\n");
             server.crearVuelo(flightCode, plane.getCode(), airportDesde, airportHasta, etd, eta);
-            out.println("Vuelo: '" + flightCode + "' registrado.");
+            out.println("Flight: '" + flightCode + "' registrado.");
         }
     }
 
@@ -152,9 +152,9 @@ public class Gui {
 
     public void sellTicket() {
         printVuelos();
-        Vuelo vuelo = leerVuelo();
-        printSeats(vuelo.getSeats());
-        reserveSeat(vuelo.getCode());
+        Flight flight = leerVuelo();
+        printSeats(flight.getSeats());
+        reserveSeat(flight.getCode());
     }
 
     public Seat reserveSeat(String fligthCode) {

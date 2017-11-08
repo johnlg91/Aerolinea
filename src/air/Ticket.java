@@ -4,14 +4,14 @@ import people.PersonClient;
 
 public class Ticket {
     private PersonClient personClient;
-    private Vuelo vuelo;
+    private Flight flight;
     private Seat seat;
     private String ticketCode;
 
-    public Ticket(PersonClient personClient, Vuelo vuelo, Seat seat) {
-        this.vuelo = vuelo;
+    public Ticket(PersonClient personClient, Flight flight, Seat seat) {
+        this.flight = flight;
         this.seat = seat;
         this.personClient = personClient;
-        ticketCode = seat.toString() + vuelo.toString();
+        ticketCode = seat.toString() + flight.toString();
     }
 }
