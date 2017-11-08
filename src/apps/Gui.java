@@ -5,6 +5,8 @@ import air.Plane;
 import air.Seat;
 import air.Vuelo;
 import api.Server;
+import com.sun.javafx.binding.StringFormatter;
+import people.Cliente;
 import util.Scanner;
 
 import java.util.Date;
@@ -65,6 +67,13 @@ public class Gui {
             out.println(a);
     }
 
+    //Corregirlo para q todos los dni terminen en la misma linea
+    public void printClientes() {
+        for (Cliente c : server.getClientesMap()) {
+            out.println(c.getName() + "_______" + c.getDNI());
+        }
+    }
+
     public void printSeats(Iterable<Seat> seats) {
         int row = 1;
         out.print("| ");
@@ -79,6 +88,7 @@ public class Gui {
         }
         out.println("|\n");
     }
+
 
     // ]
 
@@ -116,7 +126,7 @@ public class Gui {
 
 
     public void createAeropuerto() {
-        String name = Scanner.getString("Intoduzca el nombre del aeropuerto");
+        String name = Scanner.getString("Intoduzca el name del aeropuerto");
         if (server.isInPlaneKeySet(name)) {
             out.println("Aeropuerto ya existente introduzca otro");
             createAeropuerto();
@@ -128,10 +138,20 @@ public class Gui {
         }
     }
 
+    public void createCliente() {
+        int DNI = Scanner.getInt("Introduzca su DNI");
+        if (server.isInClienteKeySet(DNI)) {
+            out.println("El usuario ya esta registrado");
+        } else {
+            String name = Scanner.getString("Introduzca su name");
+            server.crearCliente(DNI, name);
+        }
+    }
+
     // ]
 
 
-    public void venderPasaje() {
+    public void sellTicket() {
         printVuelos();
         Vuelo vuelo = leerVuelo();
         printSeats(vuelo.getSeats());
@@ -154,4 +174,6 @@ public class Gui {
         out.println("Que tenga un buen día\n");
         return s;
     }
+
+
 }
