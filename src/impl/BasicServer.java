@@ -117,8 +117,8 @@ public class BasicServer implements Server {
     }
 
     @Override
-    public void crearPlane(String planeCode, int rows, int cols) {
-        Plane plane = new Plane(planeCode, rows, cols);
+    public void crearPlane(String planeCode, int rowsFirstClass, int rows, int cols) {
+        Plane plane = new Plane(planeCode, rowsFirstClass, rows, cols);
         planesMap.put(planeCode, plane);
     }
 
@@ -160,8 +160,8 @@ public class BasicServer implements Server {
         crearAeropuerto("San Andres", -1, -4);
 
         // Aviones
-        crearPlane("737", 30, 6);
-        crearPlane("777", 50, 8);
+        crearPlane("737", 10, 20, 6);
+        crearPlane("777", 15, 45, 8);
 
         // Vuelos
         crearFlight("0", "737", findAirport("Austral"), findAirport("Di Tella"), new Date("2017/7/2"), new Date("2017/7/3"));

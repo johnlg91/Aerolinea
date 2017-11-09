@@ -6,6 +6,7 @@ import java.util.Map;
 public class Flight {
 
     private final Map<String, Seat> seats;
+    private final Map<String, Seat> seatsFirst;
     private Date etd;
     private Date eta;
     private Plane plane;
@@ -21,6 +22,7 @@ public class Flight {
         this.departure = departure;
         this.arrival = arrival;
         this.seats = plane.seats();
+        this.seatsFirst = plane.seatsFirst();
     }
 
     public Seat getSeat(String code) {
@@ -33,6 +35,10 @@ public class Flight {
 
     public Iterable<Seat> getSeats() {
         return seats.values();
+    }
+
+    public Iterable<Seat> getSeatsFirst() {
+        return seatsFirst.values();
     }
 
     @Override

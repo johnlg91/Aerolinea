@@ -5,7 +5,9 @@ import air.Flight;
 import air.Plane;
 import air.Seat;
 import people.PersonClient;
+
 import java.util.Date;
+
 
 public interface Server {
 
@@ -14,7 +16,7 @@ public interface Server {
 
     void crearClient(int dni, String nombre);
 
-    void crearPlane(String planeCode, int rows, int cols);
+    void crearPlane(String planeCode, int rowsFirstClass, int rows, int cols);
 
     void crearAeropuerto(String name, int x, int y);
     // ]

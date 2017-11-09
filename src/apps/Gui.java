@@ -74,7 +74,25 @@ public class Gui {
         }
     }
 
-    public void printSeats(Iterable<Seat> seats) {
+    public void printSeats(Iterable<Seat> seats, Iterable<Seat> seatsFirst) {
+        out.print("---- Asientos de primera clase ----\n");
+        out.println("");
+        int rowFirstClass = 1;
+        out.print("| ");
+        for (Seat seat : seatsFirst) {
+            if (seat.getRowFirstClass() != rowFirstClass) {
+                out.println("|");
+                out.print("| ");
+                rowFirstClass = seat.getRowFirstClass();
+            }
+            if (seat.isReserved()) out.print("\033[31m" + seat + "\033[0m ");
+            else {
+                out.print("\033[32m" + seat + "\033[0m ");
+            }
+        }
+        out.println("|");
+        out.print("\n---- Asientos de clase media ----\n");
+        out.println("");
         int row = 1;
         out.print("| ");
         for (Seat seat : seats) {
@@ -124,14 +142,15 @@ public class Gui {
     }
 
     public void createPlane() {
-        String planeCode = Scanner.getString("Cree un codigo para el Avion");
+        String planeCode = Scanner.getString("Cree un codigo para el Avion: ");
         if (server.isInPlaneKeySet(planeCode)) {
-            out.println("Codigo de avion ya existente introduzca otro\n");
+            out.println("Codigo de avion ya existente introduzca otro: ");
             createPlane();
         } else {
-            int rows = Scanner.getInt("Introduzca la cantidad de filas");
-            int columns = Scanner.getInt("Introduzca la cantidad de columnas");
-            server.crearPlane(planeCode, rows, columns);
+            int rowsFirstClass = Scanner.getInt("Introduzca la cantidad de filas para primera clase: ");
+            int rows = Scanner.getInt("Introduzca la cantidad de filas para clase media: ");
+            int columns = Scanner.getInt("Introduzca la cantidad de columnas: ");
+            server.crearPlane(planeCode, rowsFirstClass, rows, columns);
             out.println("El Avion '" + planeCode + "' a sido registrado.");
         }
     }
@@ -166,7 +185,7 @@ public class Gui {
     public void sellTicket() {
         printFlights();
         Flight flight = callFlight();
-        printSeats(flight.getSeats());
+        printSeats(flight.getSeats(), flight.getSeatsFirst());
         reserveSeat(flight.getCode());
     }
 

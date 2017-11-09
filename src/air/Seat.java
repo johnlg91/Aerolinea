@@ -2,10 +2,12 @@ package air;
 
 public class Seat {
     private final char column;
+    private final int rowFirstClass;
     private final int row;
     private boolean reserved;
 
-    public Seat(int row, char column) {
+    public Seat(int rowFirstClass, int row, char column) {
+        this.rowFirstClass = rowFirstClass;
         this.row = row;
         this.column = column;
         reserved = false;
@@ -19,6 +21,10 @@ public class Seat {
         this.reserved = reserved;
     }
 
+    public int getRowFirstClass() {
+        return rowFirstClass;
+    }
+
     public int getRow() {
         return row;
     }
@@ -29,6 +35,6 @@ public class Seat {
 
     @Override
     public String toString() {
-        return String.valueOf(row) + column;
+        return String.valueOf(rowFirstClass + row) + column;
     }
 }
