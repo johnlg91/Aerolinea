@@ -28,7 +28,7 @@ public class AdminApp {
                     gui.createPlane();
                     break;
                 case 'z':
-                    gui.createAeropuerto();
+                    gui.createAirport();
                     break;
                 case 'x':
                     gui.printClients();

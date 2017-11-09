@@ -156,25 +156,25 @@ public class Gui {
     }
 
 
-    public void createAeropuerto() {
-        String name = Scanner.getString("Intoduzca el name del aeropuerto");
+    public void createAirport() {
+        String name = Scanner.getString("Intoduzca el nombre del aeropuerto");
         if (server.isInPlaneKeySet(name)) {
-            out.println("Airport ya existente introduzca otro");
-            createAeropuerto();
+            out.println("Airport ya existente introduzca otro\n");
+            createAirport();
         } else {
-            int x = Scanner.getInt("Introduzca su ubicacion en el plano X");
-            int y = Scanner.getInt("Introduzca su ubicacion en el plano Y");
+            int x = Scanner.getInt("Introduzca su ubicacion en el plano X\n");
+            int y = Scanner.getInt("Introduzca su ubicacion en el plano Y\n");
             server.crearAeropuerto(name, x, y);
             out.println("El Avion '" + name + "' a sido registrado.");
         }
     }
 
     public void createCliente() {
-        int DNI = Scanner.getInt("Introduzca su DNI");
+        int DNI = Scanner.getInt("Introduzca su DNI\n");
         if (server.isInClientKeySet(DNI)) {
-            out.println("El usuario ya esta registrado");
+            out.println("El usuario ya esta registrado\n");
         } else {
-            String name = Scanner.getString("Introduzca su name");
+            String name = Scanner.getString("Introduzca su nombre\n");
             server.crearClient(DNI, name);
         }
     }
@@ -219,12 +219,12 @@ public class Gui {
     }
 
     public void checkClient() {
-        int DNI = Scanner.getInt("Introduzca su DNI");
-        String name = Scanner.getString("Introduzca su nombre");
+        int DNI = Scanner.getInt("Introduzca su DNI\n");
+        String name = Scanner.getString("Introduzca su nombre\n");
         if (server.isInClientKeySet(DNI)) ;
         else {
             out.println("Usuario no registrado,tiene q registrarse para relaizar una compra, desea registrarse?");
-            char macarena = Scanner.getChar("Introduzca 'y' o 'n'");
+            char macarena = Scanner.getChar("Introduzca 'y' o 'n'\n");
             switch (macarena) {
                 case 'y':
                     server.crearClient(DNI, name);
