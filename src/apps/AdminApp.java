@@ -1,6 +1,7 @@
 package apps;
 
 import impl.BasicServer;
+import people.PersonClient;
 import util.Scanner;
 
 import static java.lang.System.out;
@@ -19,7 +20,8 @@ public class AdminApp {
                     gui.createFlight();
                     break;
                 case 's':
-                    gui.sellTicket();
+                    PersonClient p = gui.checkClient();
+                    gui.sellTicket(p);
                     break;
                 case 'd':
                     gui.printFlights();

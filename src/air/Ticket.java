@@ -12,6 +12,11 @@ public class Ticket {
         this.flight = flight;
         this.seat = seat;
         this.personClient = personClient;
-        ticketCode = seat.toString() + flight.toString();
+        ticketCode = flight.getCode() + "-" + seat.toString();
+    }
+
+    @Override
+    public String toString() {
+        return ticketCode;
     }
 }

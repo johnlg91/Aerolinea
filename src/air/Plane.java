@@ -22,8 +22,18 @@ public class Plane {
         return code;
     }
 
-    //Cuando creo un avion esto automaticamente crea sus asientos
-    //Que pasa si el numero de seats exede 26? --> sonamos, pero no hay aviones tan anchos...
+    public Map<String, Seat> seatsFirst() {
+        Map<String, Seat> seatsFirst = new LinkedHashMap<>();
+        for (int i = 1; i < rowsFirstClass; i++) {
+            for (int j = 0; j < columns; j++) {
+                Seat seat = new Seat(i, 0, (char) (j + 'A'));
+                seatsFirst.put(seat.toString(), seat);
+            }
+        }
+        return seatsFirst;
+    }
+
+
     public Map<String, Seat> seats() {
         Map<String, Seat> seats = new LinkedHashMap<>();
         for (int i = 1; i < rows; i++) {
@@ -35,16 +45,7 @@ public class Plane {
         return seats;
     }
 
-    public Map<String, Seat> seatsFirst() {
-        Map<String, Seat> seatsFirst = new LinkedHashMap<>();
-        for (int i = 1; i < rowsFirstClass; i++) {
-            for (int j = 0; j < columns; j++) {
-                Seat seat = new Seat(i, 0, (char) (j + 'A'));
-                seatsFirst.put(seat.toString(), seat);
-            }
-        }
-        return seatsFirst;
-    }
+
 
     @Override
     public String toString() {

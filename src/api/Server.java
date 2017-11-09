@@ -30,6 +30,8 @@ public interface Server {
 
     Seat findSeat(String fligthCode, String seatCode);
 
+    PersonClient findClient(int DNI);
+
     // ]
 
     //MapGetters [
@@ -43,7 +45,7 @@ public interface Server {
 
     // ]
 
-    void reserveSeat(String fligthCode, String seatCode);
+    void reserveSeat(String fligthCode, String seatCode, int dni);
 
     boolean isInPlaneKeySet(String key);
 

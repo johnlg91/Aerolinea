@@ -43,7 +43,7 @@ public class Flight {
 
     @Override
     public String toString() {
-        return String.format("Flight: %5s %-10s ETD: %-30s  %-10s ETA: %-30s\n", code, departure, etd, arrival, eta);
+            return String.format("Flight: %5s %-10s ETD: %-30s  %-10s ETA: %-30s\n", code, departure, etd, arrival, eta);
     }
 }
 

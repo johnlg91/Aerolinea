@@ -30,6 +30,7 @@ public class BasicServer implements Server {
 
     //Getters para para los los keys o valores de los mapas [
 
+    @Override
     public Iterable<String> getPlanesCodes() {
         return planesMap.keySet();
     }
@@ -52,21 +53,26 @@ public class BasicServer implements Server {
     // ]
 
 
-    //Finders, retornan lo desado del mapa segun el codigo String pasado [
+    //Finders, retornan lo desado del mapa segun el codigo pasado [
+
+    @Override
     public Plane findPlane(String code) {
         return planesMap.get(code);
     }
 
+    @Override
     public Flight findFlight(String code) {
         return flightMap.get(code);
     }
 
+    @Override
     public Airport findAirport(String code) {
         return airportsMap.get(code);
     }
 
-    public PersonClient findClient(String DNI) {
-        return clientMap.get(DNI);
+    @Override
+        public PersonClient findClient(int dni) {
+        return clientMap.get(dni);
     }
 
     @Override
@@ -127,8 +133,12 @@ public class BasicServer implements Server {
 
     //Reservar un asiento lamentablemente con un setter
     @Override
-    public void reserveSeat(String fligthCode, String seatCode) {
-        findSeat(fligthCode, seatCode).setReserved(true);
+    public void reserveSeat(String fligthCode, String seatCode, int dni) {
+        Seat seat = findSeat(fligthCode, seatCode);
+        PersonClient client = findClient(dni);
+        seat.setReserved(true);
+        Ticket t = new Ticket(client, findFlight(fligthCode), seat);
+        client.addTicket(t);
     }
 
 
@@ -139,6 +149,7 @@ public class BasicServer implements Server {
         return planesMap.containsKey(key);
     }
 
+    @Override
     public boolean isInFlightKeySet(String key) {
         return flightMap.containsKey(key);
     }
