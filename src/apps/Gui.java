@@ -201,7 +201,7 @@ public class Gui {
             return reserveSeat(fligthCode);
         }
         server.reserveSeat(fligthCode, seatCode);
-        out.println("Su asiento ha sido reservado\n ");
+        out.println("Su asiento ha sido reservado.\n ");
         char macarena = Scanner.getChar("Introduzca 'y' para reservar otro asiento.\n" +
                 "Intoduzca 'n' para finalizar la reserva.\n");
         switch (macarena) {
