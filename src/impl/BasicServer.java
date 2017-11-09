@@ -13,16 +13,16 @@ import java.util.TreeMap;
 public class BasicServer implements Server {
 
     // Aeropuertos guardados en mapa
-    private TreeMap<String, Airport> aeropuertosMap = new TreeMap<>();
+    private TreeMap<String, Airport> airportsMap = new TreeMap<>();
 
     // Vuelos Guardados en mapa
-    private TreeMap<String, Flight> vuelosMap = new TreeMap<>();
+    private TreeMap<String, Flight> flightMap = new TreeMap<>();
 
     // Aviones Guardados en mapa
     private TreeMap<String, Plane> planesMap = new TreeMap<>();
 
     // Clientes Guardados en mapa
-    private TreeMap<Integer, PersonClient> clientesMap = new TreeMap<>();
+    private TreeMap<Integer, PersonClient> clientMap = new TreeMap<>();
 
     // Tickets Guardados en mapa
     private TreeMap<String, Ticket> ticketMap = new TreeMap<>();
@@ -35,18 +35,18 @@ public class BasicServer implements Server {
     }
 
     @Override
-    public Iterable<Flight> getVuelosMap() {
-        return vuelosMap.values();
+    public Iterable<Flight> getFlightMap() {
+        return flightMap.values();
     }
 
     @Override
-    public Iterable<String> getAeropuertosNames() {
-        return aeropuertosMap.keySet();
+    public Iterable<String> getAirportsNames() {
+        return airportsMap.keySet();
     }
 
     @Override
-    public Iterable<PersonClient> getClientesMap() {
-        return clientesMap.values();
+    public Iterable<PersonClient> getClientMap() {
+        return clientMap.values();
     }
 
     // ]
@@ -57,21 +57,21 @@ public class BasicServer implements Server {
         return planesMap.get(code);
     }
 
-    public Flight findVuelo(String code) {
-        return vuelosMap.get(code);
+    public Flight findFlight(String code) {
+        return flightMap.get(code);
     }
 
-    public Airport findAeropuerto(String code) {
-        return aeropuertosMap.get(code);
+    public Airport findAirport(String code) {
+        return airportsMap.get(code);
     }
 
-    public PersonClient findCliente(String DNI) {
-        return clientesMap.get(DNI);
+    public PersonClient findClient(String DNI) {
+        return clientMap.get(DNI);
     }
 
     @Override
     public Seat findSeat(String fligthCode, String seatCode) {
-        return findVuelo(fligthCode).getSeat(seatCode);
+        return findFlight(fligthCode).getSeat(seatCode);
     }
 
     // ]
@@ -80,30 +80,40 @@ public class BasicServer implements Server {
     //Creators, crean y/o los agrega su mapa correspondiente [
 
     @Override
-    public void crearAeropuerto(String name, int x, int y) {
-        String fileName = "Airport";
+    public void crearAeropuerto(String aName, int x, int y) {
+        String fileName = "Airports";
         try {
             FileWriter fileWriter = new FileWriter(fileName);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            bufferedWriter.write("Nombre del Aeropuerto: " + name + ". Posición: " + x + ", " + y + ".");
+            bufferedWriter.write("Nombre del Aeropuerto: " + aName + ". Posición: " + x + ", " + y + ".");
             bufferedWriter.newLine();
             bufferedWriter.close();
         } catch (IOException ex) {
             System.out.println("Error writing to file ' " + fileName + " '.");
         }
-        aeropuertosMap.put(name, new Airport(name, x, y));
+        airportsMap.put(aName, new Airport(aName, x, y));
     }
 
     @Override
-    public void crearClient(int dni, String nombre) {
-        PersonClient c = new PersonClient(dni, nombre);
-        clientesMap.put(dni, c);
+    public void crearClient(int dni, String cName) {
+        PersonClient c = new PersonClient(dni, cName);
+        String fileName = "Clients";
+        try {
+            FileWriter fileWriter = new FileWriter(fileName);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.write("Nombre del Cliente: ");
+            bufferedWriter.newLine();
+            bufferedWriter.close();
+        } catch (IOException ex) {
+            System.out.println("Error writing to file ' " + fileName + " '.");
+        }
+        clientMap.put(dni, c);
     }
 
     @Override
     public void crearFlight(String flightCode, String planeCode, Airport from, Airport to, Date etd, Date eta) {
         Flight flight = new Flight(flightCode, findPlane(planeCode), from, to, etd, eta);
-        vuelosMap.put(flight.getCode(), flight);
+        flightMap.put(flight.getCode(), flight);
     }
 
     @Override
@@ -129,13 +139,13 @@ public class BasicServer implements Server {
         return planesMap.containsKey(key);
     }
 
-    public boolean isInVueloKeySet(String key) {
-        return vuelosMap.containsKey(key);
+    public boolean isInFlightKeySet(String key) {
+        return flightMap.containsKey(key);
     }
 
     @Override
     public boolean isInClientKeySet(int dni) {
-        return clientesMap.containsKey(dni);
+        return clientMap.containsKey(dni);
     }
 
     // ]
@@ -154,8 +164,8 @@ public class BasicServer implements Server {
         crearPlane("777", 50, 8);
 
         // Vuelos
-        crearFlight("0", "737", findAeropuerto("Austral"), findAeropuerto("Di Tella"), new Date("2017/7/2"), new Date("2017/7/3"));
-        crearFlight("1", "777", findAeropuerto("Salvador"), findAeropuerto("San Andres"), new Date("2/8/2017"), new Date("2017/8/3"));
+        crearFlight("0", "737", findAirport("Austral"), findAirport("Di Tella"), new Date("2017/7/2"), new Date("2017/7/3"));
+        crearFlight("1", "777", findAirport("Salvador"), findAirport("San Andres"), new Date("2/8/2017"), new Date("2017/8/3"));
 
         // Clientes
         crearClient(123, "Juan Perez");

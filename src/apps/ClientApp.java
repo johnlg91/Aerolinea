@@ -10,6 +10,7 @@ public class ClientApp {
 
     public static void main(String[] args) {
         Gui gui = new Gui(new BasicServer());
+        gui.checkClient();
         char cmd;
         do {
             printMenu();

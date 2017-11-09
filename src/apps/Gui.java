@@ -24,31 +24,30 @@ public class Gui {
     }
 
 
-    //Lectores, verifican q el objeto exista [
+    //Callers, llaman al objeto desde server [
 
-    public Airport leerAeropuerto(String msg) {
-        String airporCode = Scanner.getString(msg);
-        Airport a = server.findAeropuerto(airporCode);
+    public Airport callAirport(String msg) {
+        Airport a = server.findAirport(msg);
         if (a != null) return a;
         out.println("Codigo de aeropuerto incorrecto\n");
-        return leerAeropuerto(msg);
+        return callAirport(msg);
 
     }
 
-    public Flight leerVuelo() {
-        Flight flight = server.findVuelo(Scanner.getString("Elija su flight\n"));
+    public Flight callFlight() {
+        Flight flight = server.findFlight(Scanner.getString("Elija su flight\n"));
         if (flight != null) return flight;
         out.println("Flight no encontrado por favor seleccione otro");
-        return leerVuelo();
+        return callFlight();
     }
 
-    public Plane leerAvion(String msg) {
+    public Plane callPlane(String msg) {
         out.println(server.getPlanesCodes() + "\n");
         String planeCode = Scanner.getString(msg);
         Plane avion = server.findPlane(planeCode);
         if (avion != null) return avion;
         out.println("Avion no encontrado por favor seleccione otro");
-        return leerAvion(msg);
+        return callPlane(msg);
     }
 
     // ]
@@ -56,20 +55,22 @@ public class Gui {
     //Metodos Print
 
     public void printFlights() {
-        for (Flight v : server.getVuelosMap()) {
+        for (Flight v : server.getFlightMap()) {
             out.println(v);
         }
     }
 
-    public void printAeropuertos() {
-        for (String a : server.getAeropuertosNames())
+    public void printAirports() {
+        for (String a : server.getAirportsNames())
             out.println(a);
     }
 
     //Corregirlo para q todos los dni terminen en la misma linea
-    public void printClientes() {
-        for (PersonClient c : server.getClientesMap()) {
-            out.println(c.getName() + "_______" + c.getDNI());
+    public void printClients() {
+        for (PersonClient c : server.getClientMap()) {
+            out.println("-------------------------------------");
+            out.println(String.format("%-15s--------DNI: %-10s",c.getName(),c.getDNI()));
+            out.println("-------------------------------------");
         }
     }
 
@@ -94,34 +95,39 @@ public class Gui {
 
     //Metodos Create [
 
-    public void createVuelo() {
+    public void createFlight() {
         String flightCode = Scanner.getString("Introdusca un nuevo codigo de vuelo\n");
-        if (server.isInVueloKeySet(flightCode)) {
+        if (server.isInFlightKeySet(flightCode)) {
             out.println("Codigo de vuelo ya existente iroduzca otro\n");
-            createVuelo();
+            createFlight();
         } else {
             Date etd = Scanner.getDate("Introduzca su fecha de salida\n");
             Date eta = Scanner.getDate("Introduzca su fecha de llegada\n");
             out.println("Codigo de aviones disponibles: ");
-            Plane plane = leerAvion("Introduzca el codigo de un Avion\n");
+            Plane plane = callPlane("Introduzca el codigo de un Avion\n");
             out.println("------------------Aeropuertos----------------");
-            printAeropuertos();
+            printAirports();
             out.println("---------------------------------------------");
-            Airport airportDesde = leerAeropuerto("Airport desde\n");
+            String airportName = Scanner.getString("Airport desde\n");
+            Airport airportDesde = callAirport(airportName);
             out.println("------------------Aeropuertos----------------");
-            printAeropuertos();
+            printAirports();
             out.println("---------------------------------------------");
-            Airport airportHasta = leerAeropuerto("Airport hasta\n");
-            server.crearFlight(flightCode, plane.getCode(), airportDesde, airportHasta, etd, eta);
-            out.println("Flight: '" + flightCode + "' registrado.");
+            String airportName2 = Scanner.getString("Airport hasta\n");
+            if (airportName.equals(airportName2)) createFlight();
+            else {
+                Airport airportHasta = callAirport(airportName2);
+                server.crearFlight(flightCode, plane.getCode(), airportDesde, airportHasta, etd, eta);
+                out.println("Flight: '" + flightCode + "' registrado.");
+            }
         }
     }
 
-    public void createAvion() {
+    public void createPlane() {
         String planeCode = Scanner.getString("Cree un codigo para el Avion");
         if (server.isInPlaneKeySet(planeCode)) {
             out.println("Codigo de avion ya existente introduzca otro\n");
-            createAvion();
+            createPlane();
         } else {
             int rows = Scanner.getInt("Introduzca la cantidad de filas");
             int columns = Scanner.getInt("Introduzca la cantidad de columnas");
@@ -159,7 +165,7 @@ public class Gui {
 
     public void sellTicket() {
         printFlights();
-        Flight flight = leerVuelo();
+        Flight flight = callFlight();
         printSeats(flight.getSeats());
         reserveSeat(flight.getCode());
     }
@@ -196,9 +202,21 @@ public class Gui {
     public void checkClient() {
         int DNI = Scanner.getInt("Introduzca su DNI");
         String name = Scanner.getString("Introduzca su nombre");
-        if (server.isInClientKeySet(DNI));
+        if (server.isInClientKeySet(DNI)) ;
         else {
-            out.println("Usuario no registrado desea registrarse");
+            out.println("Usuario no registrado,tiene q registrarse para relaizar una compra, desea registrarse?");
+            char macarena = Scanner.getChar("Introduzca 'y' o 'n'");
+            switch (macarena) {
+                case 'y':
+                    server.crearClient(DNI, name);
+                    break;
+                case 'n':
+                    out.println("Que tenga un buen día\n");
+                    break;
+                default:
+                    out.println("Commando Invalido\n");
+                    break;
+            }
         }
 
     }

@@ -20,9 +20,9 @@ public interface Server {
     // ]
 
     //Finders [
-    Airport findAeropuerto(String code);
+    Airport findAirport(String code);
 
-    Flight findVuelo(String flightCode);
+    Flight findFlight(String flightCode);
 
     Plane findPlane(String code);
 
@@ -33,11 +33,11 @@ public interface Server {
     //MapGetters [
     Iterable<String> getPlanesCodes();
 
-    Iterable<Flight> getVuelosMap();
+    Iterable<Flight> getFlightMap();
 
-    Iterable<String> getAeropuertosNames();
+    Iterable<String> getAirportsNames();
 
-    Iterable<PersonClient> getClientesMap();
+    Iterable<PersonClient> getClientMap();
 
     // ]
 
@@ -45,7 +45,7 @@ public interface Server {
 
     boolean isInPlaneKeySet(String key);
 
-    boolean isInVueloKeySet(String key);
+    boolean isInFlightKeySet(String key);
 
     boolean isInClientKeySet(int dni);
 }

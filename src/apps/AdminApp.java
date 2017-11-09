@@ -16,7 +16,7 @@ public class AdminApp {
             cmd = Scanner.getChar("Ingrese el comando o 'q' para salir\n");
             switch (cmd) {
                 case 'a':
-                    gui.createVuelo();
+                    gui.createFlight();
                     break;
                 case 's':
                     gui.sellTicket();
@@ -25,19 +25,19 @@ public class AdminApp {
                     gui.printFlights();
                     break;
                 case 'f':
-                    gui.createAvion();
+                    gui.createPlane();
                     break;
                 case 'z':
                     gui.createAeropuerto();
                     break;
                 case 'x':
-                    gui.printClientes();
+                    gui.printClients();
                     break;
                 case 'c':
                     gui.createCliente();
                     break;
                 case 'v':
-                    gui.printAeropuertos();
+                    gui.printAirports();
                     break;
                 case 'q':
                     break;
