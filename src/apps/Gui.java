@@ -78,9 +78,9 @@ class Gui {
                 out.print("| ");
                 rowFirstClass = seat.getRowFirstClass();
             }
-            if (seat.isReserved()) out.print("\033[31m" + seat + "\033[0m ");
+            if (seat.isReserved()) out.printf("\033[31m" + "%3s" + "\033[0m ",seat);
             else {
-                out.print("\033[32m" + seat + "\033[0m ");
+                out.printf("\033[32m" + "%3s" + "\033[0m ",seat);
             }
         }
         out.println("|");
@@ -94,8 +94,8 @@ class Gui {
                 out.print("| ");
                 row = seat.getRow();
             }
-            if (seat.isReserved()) out.print("\033[31m" + seat + "\033[0m ");
-            else out.print("\033[32m" + seat + "\033[0m ");
+            if (seat.isReserved()) out.printf("\033[31m" + "%3s" + "\033[0m ",seat);
+            else out.printf("\033[32m" + "%3s" + "\033[0m ",seat);
         }
         out.println("|\n");
     }
@@ -233,8 +233,8 @@ class Gui {
 
     //Arreglar el null
     PersonClient checkClient() {
-        int DNI = Scanner.getInt("Introduzca su DNI\n");
-        String name = Scanner.getString("Introduzca su nombre\n");
+        int DNI = Scanner.getInt("Introduzca su DNI: \n");
+        String name = Scanner.getString("Introduzca su nombre: \n");
         if (server.isInClientKeySet(DNI)) {
             return server.findClient(DNI);
         } else {

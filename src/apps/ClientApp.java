@@ -6,9 +6,9 @@ import util.Scanner;
 
 import static java.lang.System.out;
 
-public class ClientApp {
+public class ClientApp  {
 
-    public static void main(String[] args) {
+    public void clientApp() {
         Gui gui = new Gui(new BasicServer());
         PersonClient p = gui.checkClient();
         char cmd;
