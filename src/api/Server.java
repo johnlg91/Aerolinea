@@ -37,7 +37,7 @@ public interface Server {
     //MapGetters [
     Iterable<String> getPlanesCodes();
 
-    Iterable<Flight> getFlightMap();
+    Iterable<Flight> getFlightsMap();
 
     Iterable<String> getAirportsNames();
 

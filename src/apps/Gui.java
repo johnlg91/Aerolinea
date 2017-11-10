@@ -52,7 +52,7 @@ public class Gui {
     //Metodos Print
 
     public void printFlights() {
-        for (Flight v : server.getFlightMap()) {
+        for (Flight v : server.getFlightsMap()) {
             out.println(v);
         }
     }

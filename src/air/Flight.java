@@ -41,9 +41,29 @@ public class Flight {
         return seatsFirst.values();
     }
 
+    public Plane getPlane() {
+        return plane;
+    }
+
+    public Airport getDeparture() {
+        return departure;
+    }
+
+    public Airport getArrival() {
+        return arrival;
+    }
+
+    public Date getETD() {
+        return etd;
+    }
+
+    public Date getETA() {
+        return eta;
+    }
+
     @Override
     public String toString() {
-            return String.format("Flight: %5s %-10s ETD: %-30s  %-10s ETA: %-30s\n", code, departure, etd, arrival, eta);
+        return String.format("Flight: %5s %-10s ETD: %-30s  %-10s ETA: %-30s\n", code, departure, etd, arrival, eta);
     }
 }
 
