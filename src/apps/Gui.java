@@ -9,21 +9,17 @@ import java.util.Date;
 
 import static java.lang.System.out;
 
-public class Gui {
+class Gui {
     private final Server server;
 
-    public Gui(Server server) {
+    Gui(Server server) {
         this.server = server;
-    }
-
-    public Server getServer() {
-        return server;
     }
 
 
     //Callers, llaman al objeto desde server [
 
-    public Airport callAirport(String msg) {
+    private Airport callAirport(String msg) {
         Airport a = server.findAirport(msg);
         if (a != null) return a;
         out.println("Codigo de aeropuerto incorrecto\n");
@@ -31,14 +27,14 @@ public class Gui {
 
     }
 
-    public Flight callFlight() {
+    private Flight callFlight() {
         Flight flight = server.findFlight(Scanner.getString("Elija su flight\n"));
         if (flight != null) return flight;
         out.println("Flight no encontrado por favor seleccione otro");
         return callFlight();
     }
 
-    public Plane callPlane(String msg) {
+    private Plane callPlane(String msg) {
         out.println(server.getPlanesCodes() + "\n");
         String planeCode = Scanner.getString(msg);
         Plane avion = server.findPlane(planeCode);
@@ -51,19 +47,19 @@ public class Gui {
 
     //Metodos Print
 
-    public void printFlights() {
+    void printFlights() {
         for (Flight v : server.getFlightsMap()) {
             out.println(v);
         }
     }
 
-    public void printAirports() {
+    void printAirports() {
         for (String a : server.getAirportsNames())
             out.println(a);
     }
 
     //Corregirlo para q todos los dni terminen en la misma linea
-    public void printClients() {
+    void printClients() {
         for (PersonClient c : server.getClientMap()) {
             out.println("-------------------------------------");
             out.println(String.format("%-15s--------DNI: %-10s", c.getName(), c.getDNI()));
@@ -71,7 +67,7 @@ public class Gui {
         }
     }
 
-    public void printSeats(Iterable<Seat> seats, Iterable<Seat> seatsFirst) {
+    private void printSeats(Iterable<Seat> seats, Iterable<Seat> seatsFirst) {
         out.print("---- Asientos de primera clase ----\n");
         out.println("");
         int rowFirstClass = 1;
@@ -104,7 +100,7 @@ public class Gui {
         out.println("|\n");
     }
 
-    public void printTickets(PersonClient p) {
+    void printTickets(PersonClient p) {
         for (Ticket t : p.getReserves()) {
             out.println(t);
         }
@@ -116,8 +112,8 @@ public class Gui {
 
     //Metodos Create [
 
-    public void createFlight() {
-        String flightCode = Scanner.getString("Introdusca un nuevo codigo de vuelo\n");
+    void createFlight() {
+        String flightCode = Scanner.getString("Introduzca un nuevo codigo de vuelo\n");
         if (server.isInFlightKeySet(flightCode)) {
             out.println("Codigo de vuelo ya existente iroduzca otro\n");
             createFlight();
@@ -144,14 +140,14 @@ public class Gui {
         }
     }
 
-    public void createPlane() {
+    void createPlane() {
         String planeCode = Scanner.getString("Cree un codigo para el Avion: ");
         if (server.isInPlaneKeySet(planeCode)) {
             out.println("Codigo de avion ya existente introduzca otro: ");
             createPlane();
         } else {
             int rowsFirstClass = Scanner.getInt("Introduzca la cantidad de filas para primera clase: ");
-            int rows = Scanner.getInt("Introduzca la cantidad de filas para clase media: ");
+            int rows = Scanner.getInt("Introduzca la cantidad de filas para clase turista: ");
             int columns = Scanner.getInt("Introduzca la cantidad de columnas: ");
             server.crearPlane(planeCode, rowsFirstClass, rows, columns);
             out.println("El Avion '" + planeCode + "' a sido registrado.");
@@ -159,8 +155,8 @@ public class Gui {
     }
 
 
-    public void createAirport() {
-        String name = Scanner.getString("Intoduzca el nombre del aeropuerto");
+    void createAirport() {
+        String name = Scanner.getString("Intoduzca el nombre del aeropuerto\n");
         if (server.isInPlaneKeySet(name)) {
             out.println("Airport ya existente introduzca otro\n");
             createAirport();
@@ -172,7 +168,7 @@ public class Gui {
         }
     }
 
-    public void createCliente() {
+    void createCliente() {
         int DNI = Scanner.getInt("Introduzca su DNI\n");
         if (server.isInClientKeySet(DNI)) {
             out.println("El usuario ya esta registrado\n");
@@ -185,29 +181,44 @@ public class Gui {
     // ]
 
 
-    public void sellTicket(PersonClient p) {
+    void sellTicket(PersonClient p) {
         printFlights();
         Flight flight = callFlight();
         printSeats(flight.getSeats(), flight.getSeatsFirst());
         reserveSeat(flight.getCode(), p);
     }
 
-    public Seat reserveSeat(String fligthCode, PersonClient p) {
+    private Seat reserveSeat(String fligthCode, PersonClient p) {
+        Flight f = server.findFlight(fligthCode);
         String seatCode = Scanner.getString("Elija su asiento\n").toUpperCase();
         Seat s = server.findSeat(fligthCode, seatCode);
         if (s == null) {
-            out.println("Asiento incorrecto por favor elija otro\n");
-            return reserveSeat(fligthCode, p);
+            s = server.findSeatFirst(fligthCode, seatCode);
+            if (s == null) {
+                out.println("Asiento incorrecto por favor elija otro\n");
+                return reserveSeat(fligthCode, p);
+            }
         }
         if (s.isReserved()) {
             out.println("El asiento que a eligio esta ocupado por favor elija otro\n");
             return reserveSeat(fligthCode, p);
         }
-        server.reserveSeat(fligthCode, seatCode, p.getDNI());
+        if (f.isInSeatKeySet(s.toString())){
+            server.reserveSeat(fligthCode, seatCode,p.getDNI());
+            out.println("Su asiento ha sido reservado.\n ");
+            switchy(p);
+            return s;
+        }
+        server.reserveSeatFirst(fligthCode, seatCode,p.getDNI());
         out.println("Su asiento ha sido reservado.\n ");
-        char macarena = Scanner.getChar("Introduzca 'y' para reservar otro asiento.\n" +
+        switchy(p);
+        return s;
+    }
+
+    private void switchy(PersonClient p){
+        char maria = Scanner.getChar("Introduzca 'y' para reservar otro asiento.\n" +
                 "Intoduzca 'n' para finalizar la reserva.\n");
-        switch (macarena) {
+        switch (maria) {
             case 'y':
                 sellTicket(p);
                 break;
@@ -218,10 +229,10 @@ public class Gui {
                 out.println("Commando Invalido\n");
                 break;
         }
-        return s;
     }
 
-    public PersonClient checkClient() {
+    //Arreglar el null
+    PersonClient checkClient() {
         int DNI = Scanner.getInt("Introduzca su DNI\n");
         String name = Scanner.getString("Introduzca su nombre\n");
         if (server.isInClientKeySet(DNI)) {

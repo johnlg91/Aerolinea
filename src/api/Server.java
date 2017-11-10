@@ -30,6 +30,8 @@ public interface Server {
 
     Seat findSeat(String fligthCode, String seatCode);
 
+    Seat findSeatFirst (String fligthCode, String seatCoode);
+
     PersonClient findClient(int DNI);
 
     // ]
@@ -44,6 +46,8 @@ public interface Server {
     Iterable<PersonClient> getClientMap();
 
     // ]
+
+    void reserveSeatFirst (String fligthCode, String seatCode, int dni);
 
     void reserveSeat(String fligthCode, String seatCode, int dni);
 

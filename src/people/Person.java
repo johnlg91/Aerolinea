@@ -1,11 +1,11 @@
 package people;
 
-public abstract class Person {
+abstract class Person {
 
-    protected int DNI;
-    protected String name;
+    int DNI;
+    String name;
 
-    public Person(int DNI, String name) {
+    Person(int DNI, String name) {
         this.DNI = DNI;
         this.name = name;
     }

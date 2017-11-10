@@ -22,7 +22,7 @@ public class Plane {
         return code;
     }
 
-    public Map<String, Seat> seatsFirst() {
+    Map<String, Seat> seatsFirst() {
         Map<String, Seat> seatsFirst = new LinkedHashMap<>();
         for (int i = 1; i < rowsFirstClass; i++) {
             for (int j = 0; j < columns; j++) {
@@ -34,7 +34,7 @@ public class Plane {
     }
 
 
-    public Map<String, Seat> seats() {
+    Map<String, Seat> seats() {
         Map<String, Seat> seats = new LinkedHashMap<>();
         for (int i = 1; i < rows; i++) {
             for (int j = 0; j < columns; j++) {

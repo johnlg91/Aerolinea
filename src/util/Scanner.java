@@ -1,7 +1,5 @@
 package util;
 
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.util.Date;
 
 public class Scanner {

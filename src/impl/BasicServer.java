@@ -77,6 +77,11 @@ public class BasicServer implements Server {
         return findFlight(fligthCode).getSeat(seatCode);
     }
 
+    @Override
+    public Seat findSeatFirst (String fligthCode, String seatCode) {
+        return  findFlight(fligthCode).getSeatFirst(seatCode);
+    }
+
     // ]
 
 
@@ -112,6 +117,15 @@ public class BasicServer implements Server {
     @Override
     public void reserveSeat(String fligthCode, String seatCode, int dni) {
         Seat seat = findSeat(fligthCode, seatCode);
+        PersonClient client = findClient(dni);
+        seat.setReserved(true);
+        Ticket t = new Ticket(client, findFlight(fligthCode), seat);
+        client.addTicket(t);
+    }
+
+    @Override
+    public void reserveSeatFirst (String fligthCode, String seatCode, int dni) {
+        Seat seat = findSeatFirst(fligthCode, seatCode);
         PersonClient client = findClient(dni);
         seat.setReserved(true);
         Ticket t = new Ticket(client, findFlight(fligthCode), seat);

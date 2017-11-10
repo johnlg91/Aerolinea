@@ -29,6 +29,10 @@ public class Flight {
         return seats.get(code);
     }
 
+    public Seat getSeatFirst (String code){
+        return seatsFirst.get(code);
+    }
+
     public String getCode() {
         return code;
     }
@@ -59,6 +63,10 @@ public class Flight {
 
     public Date getETA() {
         return eta;
+    }
+
+    public boolean isInSeatKeySet (String key) {
+        return seats.containsKey(key);
     }
 
     @Override
