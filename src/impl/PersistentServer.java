@@ -34,12 +34,6 @@ public class PersistentServer extends BasicServer {
 
     //Loaders [
 
-    private void loadData() {
-        loadFlights();
-        loadAirports();
-        loadPlanes();
-    }
-
     private void loadFlights() {
         try {
             Scanner s = new Scanner(flightsFile());
@@ -83,6 +77,12 @@ public class PersistentServer extends BasicServer {
             }
         } catch (FileNotFoundException ignore) {
         }
+    }
+
+    private void loadData() {
+        loadAirports();
+        loadPlanes();
+        loadFlights();
     }
 
 

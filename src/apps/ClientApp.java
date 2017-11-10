@@ -28,6 +28,7 @@ public class ClientApp  {
                     gui.printTickets(p);
                     break;
                 case 'q':
+                    server.saveData();
                     break;
                 default:
                     out.println("Commando Invalido\n");

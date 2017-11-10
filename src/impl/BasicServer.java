@@ -153,22 +153,7 @@ public class BasicServer implements Server {
     // ]
 
 
-    // Datos de Prueba
     {
-        // Aeropuertos
-        crearAeropuerto("Austral", 0, 0);
-        crearAeropuerto("Di Tella", 5, 2);
-        crearAeropuerto("Salvador", 2, 10);
-        crearAeropuerto("San Andres", -1, -4);
-
-        // Aviones
-        crearPlane("737", 10, 20, 6);
-        crearPlane("777", 15, 45, 8);
-
-        // Vuelos
-        crearFlight("0", "737", findAirport("Austral"), findAirport("Di Tella"), new Date("2017/7/2"), new Date("2017/7/3"));
-        crearFlight("1", "777", findAirport("Salvador"), findAirport("San Andres"), new Date("2/8/2017"), new Date("2017/8/3"));
-
         // Clientes
         crearClient(123, "Juan Perez");
         crearClient(1234, "John Petersen");
@@ -178,6 +163,4 @@ public class BasicServer implements Server {
 
         //Pilotos
     }
-
-
 }
