@@ -1,6 +1,7 @@
 package apps;
 
 import impl.BasicServer;
+import impl.PersistentServer;
 import people.PersonClient;
 import util.Scanner;
 
@@ -9,7 +10,8 @@ import static java.lang.System.out;
 public class ClientApp  {
 
     public static void main(String[] args) {
-        Gui gui = new Gui(new BasicServer());
+        PersistentServer server = new PersistentServer("australis");
+        Gui gui = new Gui(server);
         PersonClient p = gui.checkClient();
         char cmd;
         do {

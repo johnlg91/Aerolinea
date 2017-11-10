@@ -11,7 +11,6 @@ public class AdminApp {
     public static void main(String[] args) {
         PersistentServer server = new PersistentServer("australis");
         Gui gui = new Gui(server);
-
         char cmd;
         do {
             printMenu();
