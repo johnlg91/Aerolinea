@@ -1,9 +1,6 @@
 package impl;
 
 import air.*;
-
-import java.io.*;
-
 import api.Server;
 import people.PersonClient;
 
@@ -13,13 +10,13 @@ import java.util.TreeMap;
 public class BasicServer implements Server {
 
     // Aeropuertos guardados en mapa
-    private TreeMap<String, Airport> airportsMap = new TreeMap<>();
+    TreeMap<String, Airport> airportsMap = new TreeMap<>();
 
     // Vuelos Guardados en mapa
-    private TreeMap<String, Flight> flightMap = new TreeMap<>();
+    TreeMap<String, Flight> flightMap = new TreeMap<>();
 
     // Aviones Guardados en mapa
-    private TreeMap<String, Plane> planesMap = new TreeMap<>();
+    TreeMap<String, Plane> planesMap = new TreeMap<>();
 
     // Clientes Guardados en mapa
     private TreeMap<Integer, PersonClient> clientMap = new TreeMap<>();
@@ -71,7 +68,7 @@ public class BasicServer implements Server {
     }
 
     @Override
-        public PersonClient findClient(int dni) {
+    public PersonClient findClient(int dni) {
         return clientMap.get(dni);
     }
 
@@ -87,32 +84,12 @@ public class BasicServer implements Server {
 
     @Override
     public void crearAeropuerto(String aName, int x, int y) {
-        String fileName = "Airports";
-        try {
-            FileWriter fileWriter = new FileWriter(fileName);
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            bufferedWriter.write("Nombre del Aeropuerto: " + aName + ". Posición: " + x + ", " + y + ".");
-            bufferedWriter.newLine();
-            bufferedWriter.close();
-        } catch (IOException ex) {
-            System.out.println("Error writing to file ' " + fileName + " '.");
-        }
         airportsMap.put(aName, new Airport(aName, x, y));
     }
 
     @Override
     public void crearClient(int dni, String cName) {
         PersonClient c = new PersonClient(dni, cName);
-        String fileName = "Clients";
-        try {
-            FileWriter fileWriter = new FileWriter(fileName);
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            bufferedWriter.write("Nombre del Cliente: ");
-            bufferedWriter.newLine();
-            bufferedWriter.close();
-        } catch (IOException ex) {
-            System.out.println("Error writing to file ' " + fileName + " '.");
-        }
         clientMap.put(dni, c);
     }
 

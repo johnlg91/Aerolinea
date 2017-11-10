@@ -52,4 +52,15 @@ public class Plane {
         return code;
     }
 
+    public int getColumns() {
+        return columns;
+    }
+
+    public int getRowsFirstClass() {
+        return rowsFirstClass;
+    }
+
+    public int getRows() {
+        return rows;
+    }
 }

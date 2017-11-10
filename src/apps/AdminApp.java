@@ -1,6 +1,6 @@
 package apps;
 
-import impl.BasicServer;
+import impl.PersistentServer;
 import people.PersonClient;
 import util.Scanner;
 
@@ -9,7 +9,8 @@ import static java.lang.System.out;
 public class AdminApp {
 
     public static void main(String[] args) {
-        Gui gui = new Gui(new BasicServer());
+        PersistentServer server = new PersistentServer("australis");
+        Gui gui = new Gui(server);
 
         char cmd;
         do {
@@ -42,6 +43,7 @@ public class AdminApp {
                     gui.printAirports();
                     break;
                 case 'q':
+                    server.saveData();
                     break;
                 default:
                     out.println("Commando Invalido\n");
