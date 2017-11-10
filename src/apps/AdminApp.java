@@ -6,9 +6,9 @@ import util.Scanner;
 
 import static java.lang.System.out;
 
-public class AdminApp implements MainApp{
+public class AdminApp {
 
-    public void clientApp() {
+    public static void main(String[] args) {
         PersistentServer server = new PersistentServer("australis");
         Gui gui = new Gui(server);
 

@@ -8,7 +8,7 @@ import static java.lang.System.out;
 
 public class ClientApp  {
 
-    public void clientApp() {
+    public static void main(String[] args) {
         Gui gui = new Gui(new BasicServer());
         PersonClient p = gui.checkClient();
         char cmd;
@@ -36,11 +36,21 @@ public class ClientApp  {
 
     private static void printMenu() {
         out.println("\n==========================");
+        out.println("=     Bienvenidos a      =");
         out.println("= Aerolineas Australis   =");
-        out.println("==========================");
-        out.println("= s - Listar vuelos      =");
-        out.println("= a - Comprar un pasaje  =");
+        out.println("        ______\n" +
+                "        _\\ _~-\\___\n" +
+                "=  = ==(____AA____D\n" +
+                "            \\_____\\___________________,-~~~~~~~`-.._\n" +
+                "            /     o O o o o o O O o o o o o o O o  |\\_\n" +
+                "            `~-.__        ___..----..                  )\n" +
+                "                  `---~~\\___________/------------`````\n" +
+                "                  =  ===(_________D");
+
+        out.println("===========================");
+        out.println("= s - Listar vuelos       =");
+        out.println("= a - Comprar un pasaje   =");
         out.println("= d - Listar mis pasajes  =");
-        out.println("=========================\n");
+        out.println("===========================\n");
     }
 }
