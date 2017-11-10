@@ -11,10 +11,6 @@ public class Airport {
         this.point = new Point(x, y);
     }
 
-    public double getDistance(Airport to){
-        return this.point.getDistance(to.point);
-    }
-
     @Override
     public String toString() {
         return name;

@@ -6,7 +6,7 @@ public class Seat {
     private final int row;
     private boolean reserved;
 
-    public Seat(int rowFirstClass, int row, char column) {
+    Seat(int rowFirstClass, int row, char column) {
         this.rowFirstClass = rowFirstClass;
         this.row = row;
         this.column = column;

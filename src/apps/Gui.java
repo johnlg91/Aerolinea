@@ -102,7 +102,7 @@ class Gui {
 
     void printTickets(PersonClient p) {
         for (Ticket t : p.getReserves()) {
-            out.println(t);
+            out.println("Codigo del avion y asiente reservado: " + t);
         }
     }
 
